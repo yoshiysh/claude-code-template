@@ -1,176 +1,96 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+このファイルは、Claude Code (claude.ai/code) がこのリポジトリでコードを扱う際のガイダンスを提供します。
 
-## Project Overview
+## プロジェクト概要
 
-This repository is a comprehensive template designed specifically for Claude Code (claude.ai/code) integration. It provides a standardized foundation for new projects with optimized workflows, development tools, and best practices.
+このリポジトリは、Claude Code (claude.ai/code) との統合に特化したシンプルなテンプレートです。軽量な構成で新しいプロジェクトの基盤を提供し、必要に応じて機能を拡張できるように設計されています。
 
-### Purpose
-- Reduce new project setup time by 50%
-- Provide Claude Code optimized configuration and custom commands
-- Ensure GitHub template repository standards compliance
-- Support multiple technology stacks through examples and configurations
-- Implement automated quality management and security practices
+### 目的
+- 新しいプロジェクトのセットアップ時間を短縮
+- Claude Code に最適化されたプロジェクトメモリ設定を提供
+- シンプルで拡張可能な基盤を提供
+- ドキュメント管理の体系化
 
-### Key Features
-- **Claude Code Integration**: Custom slash commands and project memory configuration
-- **Multi-Language Support**: Pre-configured .gitignore and examples for Node.js, Python, Go, Rust
-- **GitHub Standards**: Complete set of community files (LICENSE, CONTRIBUTING, CODE_OF_CONDUCT, SECURITY)
-- **Automated Workflows**: GitHub Actions for CI/CD, security scanning, and dependency management
-- **Quality Assurance**: Integrated linting, testing, and validation tools
-- **Documentation**: Comprehensive guides for setup, customization, and best practices
+### 主な特徴
+- **Claude Code 統合**: プロジェクトメモリの最適化設定
+- **軽量構成**: 必要最小限のファイル構成
+- **ドキュメント管理**: 調査・計画・実装の体系的な記録
+- **AI ルール設定**: コミット、PR、API命名のガイドライン
+- **柔軟性**: どんなプロジェクトタイプにも適応可能
 
-### Technology Stack Agnostic Design
-This template is intentionally technology-agnostic, providing examples and configurations for popular stacks while remaining flexible for any project type. Choose and customize the components you need.
+### 技術スタック非依存設計
+このテンプレートは意図的に技術スタック非依存で設計されており、必要に応じて技術固有の設定を追加できます。シンプルから始めて段階的に拡張してください。
 
-## Development Commands
+## 開発コマンド
 
-Below are example commands for different technology stacks. Uncomment and customize based on your project's requirements:
+プロジェクトの要件に基づいて、以下のコマンド例をカスタマイズしてください：
 
-### Node.js Projects
+### 一般的なプロジェクト
 ```bash
-# npm install          # Install dependencies
-# npm run dev          # Start development server
-# npm run build        # Build for production
-# npm run test         # Run test suite
-# npm run lint         # Run ESLint
-# npm run format       # Format code with Prettier
+# プロジェクト固有のコマンドをここに追加
+# 例：
+# npm install          # 依存関係のインストール
+# npm run dev          # 開発サーバーの起動
+# npm run build        # プロダクション用ビルド
+# npm test             # テストの実行
 ```
 
-### Python Projects
-```bash
-# pip install -r requirements.txt    # Install dependencies
-# python -m venv venv                # Create virtual environment
-# source venv/bin/activate           # Activate virtual environment (Unix)
-# python manage.py runserver         # Start development server (Django)
-# python -m pytest                   # Run tests
-# black .                           # Format code
-# flake8                            # Lint code
-```
+### 技術スタック固有の設定
+プロジェクトで使用する技術に応じて、適切なコマンドを追加してください：
 
-### Go Projects
-```bash
-# go mod download      # Download dependencies
-# go run main.go       # Run application
-# go build            # Build binary
-# go test ./...       # Run tests
-# golangci-lint run   # Run linter
-# go fmt ./...        # Format code
-```
+- **Node.js**: package.json のスクリプトセクション
+- **Python**: requirements.txt と virtual environment
+- **Go**: go.mod と Go コマンド
+- **Rust**: Cargo.toml と cargo コマンド
+- **その他**: プロジェクトに適したツールとコマンド
 
-### Rust Projects
-```bash
-# cargo build         # Build project
-# cargo run           # Run application
-# cargo test          # Run tests
-# cargo clippy        # Run linter
-# cargo fmt           # Format code
-# cargo check         # Check code without building
-```
+## テンプレート使用ガイド
 
-### Docker Projects
-```bash
-# docker build -t project-name .           # Build Docker image
-# docker run -p 8000:8000 project-name    # Run container
-# docker-compose up                        # Start with docker-compose
-# docker-compose down                      # Stop containers
-```
+### クイックスタート（3ステップ）
 
-## Template Usage Guide
+1. **テンプレートを使用**: GitHubの "Use this template" ボタンをクリック
+2. **プロジェクトをカスタマイズ**: CLAUDE.mdのプロジェクト概要を更新
+3. **開発を開始**: 必要な設定ファイルを追加してプロジェクトを開始
 
-### Quick Start (3 Steps)
+### シンプルな構成の利点
 
-1. **Use this template**: Click "Use this template" button on GitHub or clone this repository
-2. **Customize for your project**: Update CLAUDE.md Project Overview with your specific project details
-3. **Select technology stack**: Choose from examples/ directory or add your own configuration
+このテンプレートはシンプルな構成から始まるため：
+- 必要な機能のみを段階的に追加可能
+- プロジェクトの複雑さを最小限に抑制
+- Claude Code との統合に最適化
 
-### Detailed Setup Process
+## カスタマイズガイドライン
 
-1. **Repository Setup**
-   - Use GitHub's "Use this template" feature
-   - Clone your new repository locally
-   - Update repository name and description
+1. **技術固有のセットアップ**
+   - プロジェクトに必要な設定ファイルを追加（package.json、requirements.txt、go.mod等）
+   - .gitignoreに追加の除外項目を設定
+   - 依存関係管理ファイルを作成
 
-2. **Project Customization**
-   - Edit this CLAUDE.md file's Project Overview section
-   - Update README.md with your project specifics
-   - Choose and configure your technology stack from examples/
+2. **Claude Code 最適化**
+   - 開発コマンドセクションをプロジェクトに合わせて設定
+   - プロジェクト固有の重要な注意事項をこのファイルに追加
+   - プロジェクトメモリを効果的に活用
 
-3. **Development Environment**
-   - Install required tools for your chosen stack
-   - Set up Claude Code if not already configured
-   - Test custom slash commands with `/project:init-project`
+3. **必要に応じた拡張**
+   - GitHubワークフローファイルの追加
+   - セキュリティ設定の追加
+   - コミュニティファイル（CONTRIBUTING.md等）の追加
 
-4. **GitHub Integration**
-   - Enable GitHub Actions workflows
-   - Configure Dependabot for dependency updates
-   - Set up branch protection rules if needed
+## 重要な注意事項
 
-5. **Team Collaboration**
-   - Review and customize CONTRIBUTING.md guidelines
-   - Adapt CODE_OF_CONDUCT.md if necessary
-   - Configure issue and PR templates for your workflow
+### ファイル構造
 
-### Available Custom Commands
+- `CLAUDE.md` - Claude Code プロジェクトメモリ
+- `docs/` - プロジェクトドキュメント（調査・計画・実装記録）
+- `ai-rules/` - AI関連のルールとガイドライン
 
-This template includes several Claude Code custom commands (slash commands):
+### メンテナンス
 
-- `/project:init-project` - Initialize new project with guided setup
-- `/project:setup-tech-stack` - Configure technology stack specific settings
-- `/project:create-pr` - Automate pull request creation with proper formatting
-- `/project:run-tests` - Execute test suite with reporting
-
-### Customization Guidelines
-
-1. **Technology-Specific Setup**
-   - Copy relevant files from examples/ to your project root
-   - Modify package.json, requirements.txt, go.mod, or Cargo.toml as needed
-   - Update .gitignore for additional exclusions
-
-2. **Claude Code Optimization**
-   - Customize slash commands in .claude/commands/ for project-specific workflows
-   - Add project-specific important notes to this file
-   - Configure development commands section above
-
-3. **GitHub Workflows**
-   - Modify .github/workflows/ files for your CI/CD requirements
-   - Update dependabot.yml for your package manager
-   - Customize issue and PR templates
-
-## Important Notes
-
-### File Structure
-- `.claude/commands/` - Custom Claude Code slash commands
-- `examples/` - Technology stack configuration examples
-- `docs/` - Project documentation and guides
-- `.github/` - GitHub-specific configuration files
-
-### Security Considerations
-- All example configurations follow security best practices
-- Dependabot is configured for automated security updates
-- Security scanning workflows are included
-- Never commit sensitive information (API keys, passwords, etc.)
-
-### Maintenance
-- Regularly update dependencies using provided automation
-- Review and update documentation as project evolves
-- Keep custom commands synchronized with Claude Code updates
-- Monitor GitHub Actions for workflow health
-
-### Getting Help
-- Check docs/setup-guide.md for detailed instructions
-- Review examples/ directory for technology stack specific guidance
-- Refer to CONTRIBUTING.md for contribution guidelines
-- Use GitHub Issues for questions and bug reports
-
-### Claude Code Integration Notes
-- This template is optimized for Claude Code (claude.ai/code)
-- Custom commands follow official Claude Code specifications
-- Project memory configuration is designed for optimal AI assistance
-- All automation respects Claude Code workflow patterns
+- 依存関係を定期的に更新
+- プロジェクトの進化に合わせてドキュメントを更新
+- Claude Code の更新に合わせて設定を見直し
 
 ---
 
-**Note**: This template is actively maintained and follows evolving best practices. Check for updates regularly and contribute improvements back to the community.
-
+**注意**: このテンプレートは継続的にメンテナンスされ、進化するベストプラクティスに従います。定期的に更新をチェックし、改善をコミュニティにフィードバックしてください。

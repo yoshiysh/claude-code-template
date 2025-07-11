@@ -1,196 +1,163 @@
 # Claude Code Template Project
 
-A comprehensive template repository designed specifically for Claude Code (claude.ai/code) integration. This template provides a standardized foundation for new projects with optimized workflows, development tools, and best practices.
+Claude Code (claude.ai/code) 用のシンプルなテンプレートリポジトリです。新しいプロジェクトのセットアップを効率化し、開発の生産性を向上させます。
 
 ![Claude Code Compatible](https://img.shields.io/badge/Claude%20Code-Compatible-blue)
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 ![GitHub Template](https://img.shields.io/badge/GitHub-Template-success)
 
-## Overview
+## 概要
 
-This template reduces new project setup time by **50%** through pre-configured development environments, automated quality tools, and comprehensive documentation. Whether you're building with Node.js, Python, Go, Rust, or any other technology stack, this template provides the foundation you need.
+このテンプレートは、Claude Code との統合に最適化されたシンプルな構成を提供します。最小限の設定で新しいプロジェクトを開始でき、必要に応じて機能を追加していくことができます。
 
-### Key Features
+### 主な特徴
 
-- **🚀 Claude Code Integration**: Custom slash commands and optimized project memory configuration
-- **🔧 Multi-Language Support**: Pre-configured for Node.js, Python, Go, Rust, Java, and more
-- **📋 GitHub Standards**: Complete set of community files (LICENSE, CONTRIBUTING, CODE_OF_CONDUCT, SECURITY)
-- **⚡ Automated Workflows**: GitHub Actions for CI/CD, security scanning, and dependency management
-- **🛡️ Security First**: Built-in security scanning, dependency management, and best practices
-- **📚 Comprehensive Documentation**: Setup guides, customization instructions, and best practices
-- **🎯 Technology Agnostic**: Flexible foundation that adapts to any project type
+- **🚀 Claude Code 統合**: プロジェクトメモリの最適化設定
+- **📁 シンプルな構成**: 必要最小限のファイル構成でスタート
+- **📚 ドキュメント管理**: 調査・計画・実装の記録を体系的に管理
+- **🎯 柔軟性**: どんなプロジェクトタイプにも適応可能な基盤
 
-## Quick Start (3 Steps)
+## クイックスタート（3ステップ）
 
-### 1. Use This Template
+### 1. テンプレートを使用
 
-Click the **"Use this template"** button above or [create from template](https://github.com/yoshiysh/claude-code-template/generate)
+上記の **"Use this template"** ボタンをクリックするか、[テンプレートから作成](https://github.com/yoshiysh/claude-code-template/generate)
 
-### 2. Customize for Your Project
+### 2. プロジェクトをカスタマイズ
 
 ```bash
-# Clone your new repository
+# 新しいリポジトリをクローン
 git clone https://github.com/yourusername/your-project-name.git
 cd your-project-name
 
-# Update CLAUDE.md with your project details
-# Edit the Project Overview section with your specific project information
+# CLAUDE.md をプロジェクトの詳細に更新
+# プロジェクト概要セクションを編集
 ```
 
-### 3. Select Technology Stack
-
-Choose from the `examples/` directory or add your own configuration:
+### 3. プロジェクトを開始
 
 ```bash
-# For Node.js projects
-cp examples/nodejs/* .
-
-# For Python projects  
-cp examples/python/* .
-
-# For Go projects
-cp examples/go/* .
-
-# For Rust projects
-cp examples/rust/* .
+# 必要な設定ファイルを追加
+# package.json、requirements.txt、go.mod など
+# プロジェクトに必要なファイルを作成
 ```
 
-## Available Features
+## テンプレート構成
 
-### 🎛️ Claude Code Custom Commands
-
-This template includes powerful slash commands to accelerate development:
-
-| Command | Description |
-|---------|-------------|
-| `/project:init-project` | Initialize new project with guided setup |
-| `/project:setup-tech-stack` | Configure technology stack specific settings |
-| `/project:create-pr` | Automate pull request creation with proper formatting |
-| `/project:run-tests` | Execute test suite with comprehensive reporting |
-
-### 📁 Template Structure
+### 📁 ファイル構造
 
 ```text
 claude-code-template/
-├── .claude/commands/          # Custom Claude Code slash commands
-├── .github/                   # GitHub configuration and workflows
-│   ├── workflows/            # Automated CI/CD pipelines
-│   ├── ISSUE_TEMPLATE/       # Issue templates
-│   └── PULL_REQUEST_TEMPLATE.md
-├── examples/                  # Technology stack examples
-│   ├── nodejs/               # Node.js configuration
-│   ├── python/               # Python configuration
-│   ├── go/                   # Go configuration
-│   └── rust/                 # Rust configuration
-├── docs/                     # Project documentation
-│   ├── setup-guide.md        # Detailed setup instructions
-│   ├── customization-guide.md # Customization guidelines
-│   └── best-practices.md     # Development best practices
-├── CLAUDE.md                 # Claude Code project memory
-├── README.md                 # This file
-├── LICENSE                   # MIT License
-├── CONTRIBUTING.md           # Contribution guidelines
-├── CODE_OF_CONDUCT.md        # Community standards
-├── SECURITY.md               # Security policy
-└── .gitignore               # Comprehensive exclusions
+├── CLAUDE.md                 # Claude Code プロジェクトメモリ
+├── README.md                 # このファイル
+└── ai-rules/                 # AI関連のルール設定
+    ├── API_FUNCTION_NAMING.md
+    ├── COMMIT_AND_PR_GUIDELINES.md
+    └── ISSUE_GUIDELINES.md
 ```
 
-### 🔄 Automated Workflows
+### 🚀 含まれる機能
 
-- **Continuous Integration**: Automated testing and validation
-- **Security Scanning**: Dependency vulnerability checks and CodeQL analysis
-- **Dependency Management**: Automated updates via Dependabot
-- **Code Quality**: Linting, formatting, and validation checks
-- **Template Validation**: Ensures template integrity and functionality
+- **Claude Code 最適化**: プロジェクトメモリ設定でAI支援を最大化
+- **ドキュメント管理**: 調査・計画・実装の体系的な記録管理
+- **AI ルール設定**: コミット、PR、API命名などのガイドライン
+- **軽量構成**: 必要最小限から始めて段階的に拡張可能
 
-## Technology Stack Support
+## GitHub Template 使用方法
 
-This template provides configuration examples for popular technology stacks:
+### テンプレートからの新規リポジトリ作成
 
-| Technology | Package Manager | Testing | Linting | Additional Tools |
-|------------|----------------|---------|---------|------------------|
-| **Node.js** | npm/yarn/pnpm | Jest/Vitest | ESLint | Prettier, TypeScript |
-| **Python** | pip/poetry | pytest | flake8/black | mypy, pre-commit |
-| **Go** | go mod | go test | golangci-lint | gofmt, govulncheck |
-| **Rust** | cargo | cargo test | clippy | rustfmt, cargo-audit |
-| **Java** | maven/gradle | JUnit | SpotBugs | Checkstyle, PMD |
+1. **テンプレート使用**: GitHubリポジトリページの "Use this template" ボタンをクリック
+2. **リポジトリ情報入力**: 
+   - Repository name: 新しいプロジェクト名を入力
+   - Description: プロジェクトの説明を追加（オプション）
+   - Public/Private: 公開設定を選択
+3. **作成**: "Create repository from template" をクリック
 
-## Customization Guide
+### テンプレート後の初期設定
 
-### Basic Customization
+```bash
+# 作成したリポジトリをクローン
+git clone https://github.com/yourusername/your-new-repository.git
+cd your-new-repository
 
-1. **Update Project Information**
+# CLAUDE.mdをプロジェクトに合わせて更新
+# ai-rules/配下のルールも必要に応じてカスタマイズ
+```
 
+## コマンドワークフロー
+
+### 推奨される開発フロー
+
+AI支援開発を効率的に進めるため、以下の順序でコマンドを実行することを推奨します：
+
+1. **investigate（調査）**: 既存コードの理解や技術調査
    ```bash
-   # Edit CLAUDE.md Project Overview section
-   # Update README.md with your project specifics
-   # Modify package.json, requirements.txt, etc. as needed
+   # 実装前の調査フェーズ
+   # 結果はdocs/investigate/に記録される
    ```
 
-2. **Configure Technology Stack**
-
+2. **plan（計画）**: 調査結果を基に実装計画を作成
    ```bash
-   # Copy relevant example configurations
-   cp examples/your-stack/* .
-   
-   # Customize build and test scripts
-   # Update dependency management files
+   # investigateの結果を入力として使用
+   # 結果はdocs/plan/に記録される
    ```
 
-3. **Customize Claude Code Integration**
-
+3. **implement（実装）**: 計画に基づいて実装
    ```bash
-   # Modify .claude/commands/ for project-specific workflows
-   # Update CLAUDE.md Development Commands section
-   # Add project-specific Important Notes
+   # planの結果を入力として使用
+   # 結果はdocs/implement/に記録される
    ```
 
-### Advanced Customization
+4. **test（テスト）**: 実装のテストと検証
+   ```bash
+   # implementの結果を入力として使用
+   # 結果はdocs/test/に記録される
+   ```
 
-- **GitHub Workflows**: Modify `.github/workflows/` for specific CI/CD requirements
-- **Security Configuration**: Update Dependabot and security scanning settings
-- **Documentation**: Customize guides in `docs/` directory
-- **Community Files**: Adapt CONTRIBUTING.md and CODE_OF_CONDUCT.md
+### ワークフローの重要なポイント
 
-## Documentation
+- **連続性**: 各フェーズの結果を次のフェーズの入力として使用
+- **記録管理**: すべての作業がdocs/配下に体系的に記録
+- **反復可能**: 必要に応じて前のフェーズに戻って再実行可能
+- **AI最適化**: Claude Codeとの統合により各フェーズでAI支援を最大化
 
-- 📖 [Setup Guide](docs/setup-guide.md) - Detailed setup instructions
-- 🎨 [Customization Guide](docs/customization-guide.md) - Advanced customization options
-- ✨ [Best Practices](docs/best-practices.md) - Development best practices
-- 🔧 [Claude Code Integration](CLAUDE.md) - Claude Code specific configuration
+## カスタマイズガイド
 
-## Community
+### 基本的なカスタマイズ
 
-### Contributing
+1. **プロジェクト情報の更新**
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+   ```bash
+   # CLAUDE.md のプロジェクト概要セクションを編集
+   # README.md をプロジェクト固有の内容に更新
+   # 必要に応じてpackage.json、requirements.txt等を作成
+   ```
 
-### Code of Conduct
+2. **技術スタックの設定**
 
-This project follows the [Code of Conduct](CODE_OF_CONDUCT.md). Please read it before participating.
+   ```bash
+   # プロジェクトに必要な設定ファイルを追加
+   # ビルドやテストスクリプトをカスタマイズ
+   # 依存関係管理ファイルを更新
+   ```
 
-### Security
+3. **Claude Code 統合のカスタマイズ**
 
-If you discover security vulnerabilities, please see [SECURITY.md](SECURITY.md) for reporting procedures.
+   ```bash
+   # CLAUDE.md の開発コマンドセクションを更新
+   # プロジェクト固有の重要な注意事項を追加
+   ```
 
-### Getting Help
+### 拡張カスタマイズ
 
-- 🐛 [Report Issues](https://github.com/yoshiysh/claude-code-template/issues)
-- 💡 [Request Features](https://github.com/yoshiysh/claude-code-template/issues/new?template=feature_request.md)
-- 📚 [Documentation](docs/)
-- 💬 [Discussions](https://github.com/yoshiysh/claude-code-template/discussions)
+- **AI ルール**: `ai-rules/` の設定をプロジェクトに合わせて調整
+- **必要に応じて追加**: GitHubワークフロー、セキュリティ設定、コミュニティファイルなど
 
-## License
+## ドキュメント
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- [Claude Code](https://claude.ai/code) for AI-powered development assistance
-- [GitHub Template Repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository) for inspiration
-- The open source community for best practices and tools
+- 🔧 [CLAUDE.md](CLAUDE.md) - Claude Code固有の設定とプロジェクトメモリ
+- ⚙️ [ai-rules/](ai-rules/) - AI関連のルールとガイドライン
 
 ---
 
-**Note**: This template is actively maintained and follows evolving best practices. Star ⭐ this repository to stay updated with new features and improvements.
-
+**注意**: このテンプレートは継続的にメンテナンスされ、進化するベストプラクティスに従います。⭐ を付けて最新の機能と改善情報をチェックしてください。
