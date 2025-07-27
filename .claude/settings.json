@@ -12,7 +12,7 @@
       "Bash(git push:*)",
       "Bash(git reset:*)",
       "Bash(git rebase:*)",
-      "Bash(git remote:*)",
+      "Bash(git remote:*)"
     ],
     "deny": [
       "Bash(sudo:*)",
