@@ -24,7 +24,7 @@ Implement tasks step by step based on plan.md. Continuously update the Draft PR.
 2. Read the latest `docs/plan/plan_{TIMESTAMP}.md` file and confirm implementation plan
 3. Check current branch and confirm being on the appropriate branch
 4. Execute implementation step by step according to the plan
-5. Commit and push following `ai-rules/COMMIT_AND_PR_GUIDELINES.md`
+5. Commit and push following `@COMMIT_AND_PR_GUIDELINES.md`
 6. Create or update Draft PR (create on first implementation, update on continuation)
 7. Record implementation details in `docs/implement/implement_{TIMESTAMP}.md`
 8. Execute `afplay /System/Library/Sounds/Sosumi.aiff` to notify user of implementation completion and file saving
@@ -32,7 +32,7 @@ Implement tasks step by step based on plan.md. Continuously update the Draft PR.
 
 ## Branch and Commit Rules
 
-- Branch naming: Follow `ai-rules/COMMIT_AND_PR_GUIDELINES.md`
+- Branch naming: Follow `@COMMIT_AND_PR_GUIDELINES.md`
 - Commit messages: Follow same guidelines
 - Small commits: Properly split by task units
 - Draft PR: Create on first implementation, update on continuation

@@ -29,12 +29,12 @@ Determine implementation strategy, decompose tasks, create file change plan, and
 6. Establish test strategy (unit, integration, E2E)
 7. Consider risk analysis and countermeasures
 8. Document implementation plan and save to `docs/plan/plan_{TIMESTAMP}.md`
-9. Check `ai-rules/ISSUE_GUIDELINES.md` and create GitHub Issue if necessary
+9. Check `@ISSUE_GUIDELINES.md` and create GitHub Issue if necessary
 10. Execute `afplay /System/Library/Sounds/Sosumi.aiff` to notify user of plan completion and file saving
 11. Output plan file name and created Issue number (if any) to console
 
 ## GitHub Issue Creation (As Needed)
-Follow `ai-rules/ISSUE_GUIDELINES.md` and create Issue including:
+Follow `@ISSUE_GUIDELINES.md` and create Issue including:
 - Title
 - Overview
 - Acceptance criteria

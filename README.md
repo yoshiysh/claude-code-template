@@ -1,163 +1,288 @@
 # Claude Code Template Project
 
-Claude Code (claude.ai/code) 用のシンプルなテンプレートリポジトリです。新しいプロジェクトのセットアップを効率化し、開発の生産性を向上させます。
+A simple template repository for Claude Code (claude.ai/code) to streamline new project setup and enhance development productivity.
 
 ![Claude Code Compatible](https://img.shields.io/badge/Claude%20Code-Compatible-blue)
 ![GitHub Template](https://img.shields.io/badge/GitHub-Template-success)
 
-## 概要
+## Table of Contents
 
-このテンプレートは、Claude Code との統合に最適化されたシンプルな構成を提供します。最小限の設定で新しいプロジェクトを開始でき、必要に応じて機能を追加していくことができます。
+- [Overview](#overview)
+- [Prerequisites](#prerequisites)
+- [Quick Start (3 Steps)](#quick-start-3-steps)
+- [Template Structure](#template-structure)
+- [GitHub Template Usage](#github-template-usage)
+- [Command Workflow](#command-workflow)
+- [Customization Guide](#customization-guide)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [Documentation](#documentation)
 
-### 主な特徴
+## Overview
 
-- **🚀 Claude Code 統合**: プロジェクトメモリの最適化設定
-- **📁 シンプルな構成**: 必要最小限のファイル構成でスタート
-- **📚 ドキュメント管理**: 調査・計画・実装の記録を体系的に管理
-- **🎯 柔軟性**: どんなプロジェクトタイプにも適応可能な基盤
+This template provides a simple configuration optimized for integration with Claude Code. You can start a new project with minimal setup and add features as needed.
 
-## クイックスタート（3ステップ）
+### Key Features
 
-### 1. テンプレートを使用
+- **🚀 Claude Code Integration**: Optimized project memory configuration
+- **📁 Simple Structure**: Start with minimal file structure
+- **📚 Documentation Management**: Systematic management of investigation, planning, and implementation records
+- **🎯 Flexibility**: Adaptable foundation for any project type
 
-上記の **"Use this template"** ボタンをクリックするか、[テンプレートから作成](https://github.com/yoshiysh/claude-code-template/generate)
+## Quick Start (3 Steps)
 
-### 2. プロジェクトをカスタマイズ
+### 1. Use Template
+
+Click the **"Use this template"** button above or [Create from template](https://github.com/yoshiysh/claude-code-template/generate)
+
+### 2. Customize Project
 
 ```bash
-# 新しいリポジトリをクローン
+# Clone the new repository
 git clone https://github.com/yourusername/your-project-name.git
 cd your-project-name
 
-# CLAUDE.md をプロジェクトの詳細に更新
-# プロジェクト概要セクションを編集
+# Update CLAUDE.md with project details
+# Edit the project overview section
 ```
 
-### 3. プロジェクトを開始
+### 3. Start Project
 
 ```bash
-# 必要な設定ファイルを追加
-# package.json、requirements.txt、go.mod など
-# プロジェクトに必要なファイルを作成
+# Add necessary configuration files
+# package.json, requirements.txt, go.mod, etc.
+# Create files required for your project
 ```
 
-## テンプレート構成
+## Prerequisites
 
-### 📁 ファイル構造
+- [Claude Code](https://claude.ai/code) access
+- Git version 2.0 or higher
+- Basic familiarity with command-line operations
+- Text editor or IDE of choice
+
+## Template Structure
+
+### 📁 File Structure
 
 ```text
 claude-code-template/
-├── CLAUDE.md                 # Claude Code プロジェクトメモリ
-├── README.md                 # このファイル
-└── ai-rules/                 # AI関連のルール設定
-    ├── API_FUNCTION_NAMING.md
-    ├── COMMIT_AND_PR_GUIDELINES.md
-    └── ISSUE_GUIDELINES.md
+├── .claude/                   # Claude Code configuration
+│   ├── commands/              # Custom command definitions
+│   │   ├── sc/               # Single commands
+│   │   └── wf/               # Workflow commands
+│   ├── core/                 # Core system files
+│   │   ├── COMMANDS.md       # Command framework
+│   │   ├── FLAGS.md          # Flag system
+│   │   ├── MCP.md            # MCP server integration
+│   │   ├── ORCHESTRATOR.md   # Intelligent routing
+│   │   ├── PERSONAS.md       # Expert personas
+│   │   └── RULES.md          # System rules
+│   ├── project/              # Project-specific configuration
+│   │   └── SUMMARY.md        # Project summary
+│   └── settings.json         # Claude Code settings
+├── .ai-rules/                # AI-related rule settings
+│   ├── API_FUNCTION_NAMING.md
+│   ├── COMMIT_AND_PR_GUIDELINES.md
+│   └── ISSUE_GUIDELINES.md
+├── CLAUDE.md                 # Claude Code project memory
+└── README.md                 # This file
 ```
 
-### 🚀 含まれる機能
+### 🚀 Included Features
 
-- **Claude Code 最適化**: プロジェクトメモリ設定でAI支援を最大化
-- **ドキュメント管理**: 調査・計画・実装の体系的な記録管理
-- **AI ルール設定**: コミット、PR、API命名などのガイドライン
-- **軽量構成**: 必要最小限から始めて段階的に拡張可能
+- **Claude Code Optimization**: Maximize AI assistance with project memory settings
+- **Documentation Management**: Systematic record management for investigation, planning, and implementation
+- **AI Rule Settings**: Guidelines for commits, PRs, API naming, etc.
+- **Lightweight Structure**: Start minimal and expand gradually
 
-## GitHub Template 使用方法
+## GitHub Template Usage
 
-### テンプレートからの新規リポジトリ作成
+### Creating New Repository from Template
 
-1. **テンプレート使用**: GitHubリポジトリページの "Use this template" ボタンをクリック
-2. **リポジトリ情報入力**: 
-   - Repository name: 新しいプロジェクト名を入力
-   - Description: プロジェクトの説明を追加（オプション）
-   - Public/Private: 公開設定を選択
-3. **作成**: "Create repository from template" をクリック
+1. **Use Template**: Click the "Use this template" button on the GitHub repository page
+2. **Enter Repository Information**:
+   - Repository name: Enter your new project name
+   - Description: Add project description (optional)
+   - Public/Private: Select visibility setting
+3. **Create**: Click "Create repository from template"
 
-### テンプレート後の初期設定
+### Initial Setup After Template
 
 ```bash
-# 作成したリポジトリをクローン
+# Clone the created repository
 git clone https://github.com/yourusername/your-new-repository.git
 cd your-new-repository
 
-# CLAUDE.mdをプロジェクトに合わせて更新
-# ai-rules/配下のルールも必要に応じてカスタマイズ
+# Update CLAUDE.md to match your project
+# Customize rules under .ai-rules/ as needed
 ```
 
-## コマンドワークフロー
+## Command Workflow
 
-### 推奨される開発フロー
+### Recommended Development Flow
 
-AI支援開発を効率的に進めるため、以下の順序でコマンドを実行することを推奨します：
+To efficiently proceed with AI-assisted development, we recommend executing commands in the following order:
 
-1. **investigate（調査）**: 既存コードの理解や技術調査
+1. **investigate**: Understanding existing code and technical research
    ```bash
-   # 実装前の調査フェーズ
-   # 結果はdocs/investigate/に記録される
+   # Pre-implementation investigation phase
+   # Results are recorded in docs/investigate/
    ```
 
-2. **plan（計画）**: 調査結果を基に実装計画を作成
+2. **plan**: Create implementation plan based on investigation results
    ```bash
-   # investigateの結果を入力として使用
-   # 結果はdocs/plan/に記録される
+   # Use investigate results as input
+   # Results are recorded in docs/plan/
    ```
 
-3. **implement（実装）**: 計画に基づいて実装
+3. **implement**: Implementation based on the plan
    ```bash
-   # planの結果を入力として使用
-   # 結果はdocs/implement/に記録される
+   # Use plan results as input
+   # Results are recorded in docs/implement/
    ```
 
-4. **test（テスト）**: 実装のテストと検証
+4. **test**: Testing and verification of implementation
    ```bash
-   # implementの結果を入力として使用
-   # 結果はdocs/test/に記録される
+   # Use implement results as input
+   # Results are recorded in docs/test/
    ```
 
-### ワークフローの重要なポイント
+### Important Workflow Points
 
-- **連続性**: 各フェーズの結果を次のフェーズの入力として使用
-- **記録管理**: すべての作業がdocs/配下に体系的に記録
-- **反復可能**: 必要に応じて前のフェーズに戻って再実行可能
-- **AI最適化**: Claude Codeとの統合により各フェーズでAI支援を最大化
+- **Continuity**: Use each phase's results as input for the next phase
+- **Record Management**: All work is systematically recorded under docs/
+- **Repeatability**: Return to previous phases and re-execute as needed
+- **AI Optimization**: Maximize AI assistance in each phase through Claude Code integration
 
-## カスタマイズガイド
+## Customization Guide
 
-### 基本的なカスタマイズ
+### Basic Customization
 
-1. **プロジェクト情報の更新**
-
-   ```bash
-   # CLAUDE.md のプロジェクト概要セクションを編集
-   # README.md をプロジェクト固有の内容に更新
-   # 必要に応じてpackage.json、requirements.txt等を作成
-   ```
-
-2. **技術スタックの設定**
+1. **Update Project Information**
 
    ```bash
-   # プロジェクトに必要な設定ファイルを追加
-   # ビルドやテストスクリプトをカスタマイズ
-   # 依存関係管理ファイルを更新
+   # Edit the project overview section in CLAUDE.md
+   # Update README.md with project-specific content
+   # Create package.json, requirements.txt, etc. as needed
    ```
 
-3. **Claude Code 統合のカスタマイズ**
+2. **Technology Stack Setup**
 
    ```bash
-   # CLAUDE.md の開発コマンドセクションを更新
-   # プロジェクト固有の重要な注意事項を追加
+   # Add configuration files required for your project
+   # Customize build and test scripts
+   # Update dependency management files
    ```
 
-### 拡張カスタマイズ
+3. **Claude Code Integration Customization**
 
-- **AI ルール**: `ai-rules/` の設定をプロジェクトに合わせて調整
-- **必要に応じて追加**: GitHubワークフロー、セキュリティ設定、コミュニティファイルなど
+   ```bash
+   # Update the development commands section in CLAUDE.md
+   # Add project-specific important notes
+   ```
 
-## ドキュメント
+### Advanced Customization
 
-- 🔧 [CLAUDE.md](CLAUDE.md) - Claude Code固有の設定とプロジェクトメモリ
-- ⚙️ [ai-rules/](ai-rules/) - AI関連のルールとガイドライン
+- **AI Rules**: Adjust settings in `.ai-rules/` to match your project
+- **Add as Needed**: GitHub workflows, security settings, community files, etc.
+
+## Examples
+
+### Real-world Usage Examples
+
+#### Starting a Web Application Project
+
+```bash
+# 1. Create from template
+gh repo create my-web-app --template yoshiysh/claude-code-template
+cd my-web-app
+
+# 2. Set up for Node.js/React
+npm init -y
+npm install react react-dom
+
+# 3. Update CLAUDE.md with project specifics
+# 4. Use workflow commands
+/wf:investigate "analyze current web development trends"
+/wf:plan "modern React application with TypeScript"
+/wf:implement "basic React setup with routing"
+/wf:test "component and integration tests"
+```
+
+#### API Development Project
+
+```bash
+# 1. Create from template
+gh repo create my-api --template yoshiysh/claude-code-template
+cd my-api
+
+# 2. Set up for Python/FastAPI
+python -m venv venv
+source venv/bin/activate
+pip install fastapi uvicorn
+
+# 3. Follow workflow
+/wf:investigate "REST API best practices"
+/wf:plan "FastAPI with database integration"
+/wf:implement "user authentication endpoints"
+/wf:test "API endpoint testing"
+```
+
+### Command Examples
+
+```bash
+# Analysis and improvement
+/sc:analyze --focus security --depth deep
+/sc:improve --type performance --safe
+
+# Development workflow
+/sc:implement "user dashboard component" --type component --framework react
+/sc:test --type e2e --with-coverage
+
+# Documentation and maintenance
+/sc:document API --type external --style detailed
+/sc:cleanup --target unused-imports --safe
+```
+
+## Contributing
+
+### How to Contribute
+
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Make your changes** following the existing patterns
+4. **Test your changes** with different project types
+5. **Commit your changes**: Use conventional commit format
+6. **Push to the branch**: `git push origin feature/amazing-feature`
+7. **Open a Pull Request**
+
+### Contribution Guidelines
+
+- Follow the existing file structure and naming conventions
+- Update documentation for any new features
+- Test with multiple project types (web, API, CLI, etc.)
+- Ensure backwards compatibility
+- Add examples for new workflow commands
+
+### Reporting Issues
+
+Please use the [Issue Guidelines](.ai-rules/ISSUE_GUIDELINES.md) when reporting bugs or requesting features.
+
+## Documentation
+
+### Core Documentation
+
+- 🔧 [CLAUDE.md](CLAUDE.md) - Claude Code specific settings and project memory
+- ⚙️ [.ai-rules/](.ai-rules/) - AI-related rules and guidelines
+
+### Advanced Documentation
+
+- 🎯 [Command Framework](.claude/core/COMMANDS.md) - Comprehensive command system
+- 🤖 [MCP Integration](.claude/core/MCP.md) - Model Context Protocol servers
+- 🎭 [Expert Personas](.claude/core/PERSONAS.md) - Specialized AI assistants
+- 🚀 [Workflow Commands](.claude/commands/wf/) - Multi-phase development workflows
 
 ---
 
-**注意**: このテンプレートは継続的にメンテナンスされ、進化するベストプラクティスに従います。⭐ を付けて最新の機能と改善情報をチェックしてください。
+**Note**: This template is continuously maintained and follows evolving best practices. ⭐ Star it to stay updated with the latest features and improvements.
