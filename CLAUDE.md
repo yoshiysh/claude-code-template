@@ -8,9 +8,6 @@
 @PERSONAS.md
 @PRINCIPLES.md
 @RULES.md
-@API_FUNCTION_NAMING.md
-@AI_RULES.md
-@AI_RULES_EXAMPLES.md
 
 ## Project Summary
 @SUMMARY.md

@@ -10,7 +10,7 @@ git add . && git commit -m "feat: implement user authentication feature"
 "Please analyze the changes and create a Draft PR with appropriate description and labels"
 
 # Update preserving existing template
-cp .github/PULL_REQUEST_TEMPLATE.md pr_body.md
+cp @COMMIT_AND_PR_GUIDELINES.md pr_body.md
 "Please preserve template structure completely and fill in the changes"
 
 # Gradual quality improvement
@@ -30,7 +30,7 @@ git push -u origin feat-user-profile
 # 2. PR creation
 "Please create PR with following steps:
 1. Check changes with git diff --cached
-2. Create description using .github/PULL_REQUEST_TEMPLATE.md
+2. Create description using @COMMIT_AND_PR_GUIDELINES.md
 3. Select up to 3 appropriate labels from change content
 4. Create as Draft PR (preserve HTML comments)"
 
@@ -89,10 +89,10 @@ git diff --cached | head -1000
 ```bash
 # Template processing priority
 # 1. Existing PR description (complete preservation)
-# 2. .github/PULL_REQUEST_TEMPLATE.md
+# 2. @COMMIT_AND_PR_GUIDELINES.md
 # 3. Default template
 
-cp .github/PULL_REQUEST_TEMPLATE.md pr_body.md
+cp @COMMIT_AND_PR_GUIDELINES.md pr_body.md
 # Fill only empty sections while preserving HTML comments and dividers
 ```
 
@@ -115,7 +115,7 @@ cp .github/PULL_REQUEST_TEMPLATE.md pr_body.md
 # PR creation
 "Create Draft PR with following information:
 - Title: Auto-generated from commit message
-- Description: Properly filled using .github/PULL_REQUEST_TEMPLATE.md
+- Description: Properly filled using @COMMIT_AND_PR_GUIDELINES.md
 - Labels: Auto-selected from change content (max 3)
 - Base branch: main
 - HTML comments completely preserved"
@@ -167,7 +167,7 @@ mcp_github_create_pull_request({
 1. **Always start with Draft**: All PRs are created in Draft state
 2. **Gradual quality improvement**: Phase 1 (Basic implementation) → Phase 2 (Add tests) → Phase 3 (Update documentation)
 3. **Appropriate labels**: Always assign maximum 3 types of labels
-4. **Template usage**: Always use `.github/PULL_REQUEST_TEMPLATE.md`
+4. **Template usage**: Always use `@COMMIT_AND_PR_GUIDELINES.md`
 5. **Consistent formatting**: Follow project code style guidelines
 
 #### Branch Naming Convention
@@ -197,7 +197,7 @@ Examples:
 #### Processing Priority
 
 1. **Existing PR Description**: **Complete preservation** of already written content
-2. **Project Template**: Maintain `.github/PULL_REQUEST_TEMPLATE.md` structure
+2. **Project Template**: Maintain `@COMMIT_AND_PR_GUIDELINES.md` structure
 3. **Default Template**: When above doesn't exist
 
 #### Existing Content Preservation Rules
