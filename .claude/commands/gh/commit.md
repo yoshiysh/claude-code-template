@@ -1,11 +1,11 @@
-# Commit Message
+# Commit
 
-Generate appropriate commit messages from staged changes (`git diff --staged`). Only performs message generation and clipboard copying without executing git commands.
+Generate appropriate commit messages from staged changes and execute the commit automatically. Analyzes staged changes to create optimal commit messages and applies them directly.
 
 ## Usage
 
 ```bash
-/commit-message [options]
+/commit [options]
 ```
 
 ## Options
@@ -16,12 +16,14 @@ Generate appropriate commit messages from staged changes (`git diff --staged`). 
 ## Basic Examples
 
 ```bash
-# Generate message from staged changes
-# Main candidate automatically copied to clipboard
-/commit-message
+# Generate message and commit automatically
+/commit
 
-# Detect Breaking Changes
-/commit-message --breaking
+# Detect Breaking Changes and commit
+/commit --breaking
+
+# Preview commit message before executing
+/commit --dry-run
 ```
 
 ## Prerequisites
@@ -30,18 +32,19 @@ Generate appropriate commit messages from staged changes (`git diff --staged`). 
 
 ```bash
 # Warning displayed if nothing is staged
-$ /commit-message
+$ /commit
 No staged changes found. Please run git add first.
 ```
 
-### Automatic Clipboard Feature
+### Automatic Commit Execution
 
-The generated main candidate is automatically copied to clipboard in the complete format `git commit -m "message"`. You can paste and execute it directly in the terminal.
+The generated commit message is automatically applied using `git commit -m "message"`. The commit is executed immediately after message generation.
 
 **Implementation Notes**:
 
-- Execute the commit command to `pbcopy` in a separate process from message output
-- Use `printf` instead of `echo` to avoid trailing newlines
+- Execute `git commit` directly with the generated message
+- Display commit result and hash for confirmation
+- Use `--dry-run` option to preview message without committing
 
 ### Automatic Project Convention Detection
 
@@ -130,7 +133,7 @@ Default is English. Generate in project language when detected.
 
 #### Conventional Commits (Default)
 
-```
+```text
 <type>: <description>
 ```
 
@@ -159,52 +162,53 @@ Default is English. Generate in project language when detected.
 ### Output Examples
 
 ```bash
-$ /commit-message
+$ /commit
 
-📝 Commit Message Suggestions
+📝 Commit Message Generated
 ━━━━━━━━━━━━━━━━━━━━━━━━━
 
-✨ Main candidate:
+✨ Commit message:
 feat: implement JWT-based authentication system
 
-📋 Alternatives:
-1. feat: add user authentication with JWT tokens
-2. fix: resolve token validation error in auth middleware
-3. refactor: extract auth logic into separate module
+🚀 Executing commit...
 
-✅ `git commit -m "feat: implement JWT-based authentication system"` copied to clipboard
+✅ Commit successful: a1b2c3d feat: implement JWT-based authentication system
+   3 files changed, 45 insertions(+), 12 deletions(-)
 ```
 
-**Implementation Example (Corrected)**:
+**Implementation Example**:
 
 ```bash
-# Copy commit command to clipboard first (no newline)
-printf 'git commit -m "%s"' "$COMMIT_MESSAGE" | pbcopy
+# Generate commit message
+COMMIT_MESSAGE="feat: implement JWT-based authentication system"
 
-# Then display message
+# Display message
 cat << EOF
-📝 Commit Message Suggestions
+📝 Commit Message Generated
 ━━━━━━━━━━━━━━━━━━━━━━━━━
 
-✨ Main candidate:
+✨ Commit message:
 $COMMIT_MESSAGE
 
-📋 Alternatives:
-1. ...
-2. ...
-3. ...
-
-✅ \`git commit -m "$COMMIT_MESSAGE"\` copied to clipboard
+🚀 Executing commit...
 EOF
+
+# Execute commit
+git commit -m "$COMMIT_MESSAGE"
+
+# Display result
+echo "✅ Commit successful: $(git log --oneline -1)"
+git diff --stat HEAD~1 HEAD
 ```
 
 ### Operation Overview
 
 1. **Analysis**: Analyze `git diff --staged` content
 2. **Generation**: Generate appropriate commit message
-3. **Copy**: Automatically copy main candidate to clipboard
+3. **Execution**: Automatically execute `git commit` with generated message
+4. **Confirmation**: Display commit hash and change statistics
 
-**Note**: This command does not execute git add or git commit. It only generates commit messages and copies to clipboard.
+**Note**: This command executes git commit automatically. Use `--dry-run` to preview the message without committing.
 
 ### Smart Features
 
@@ -270,7 +274,7 @@ feat(api)!: change authentication flow
 
 **Examples**:
 
-```
+```text
 feat: add user registration endpoint
 fix: resolve memory leak in cache manager
 docs: update API documentation
@@ -281,22 +285,35 @@ docs: update API documentation
 ```bash
 # Use with staged changes
 git add -p  # Interactive staging
-/commit-message
-"Generate optimal commit message"
+/commit
+"Generate optimal commit message and commit"
 
-# Stage specific files for analysis
+# Stage specific files and commit
 git add src/auth/*.js
-/commit-message
-"Generate message appropriate for authentication changes"
+/commit
+"Generate message and commit authentication changes"
 
-# Breaking change detection and handling
+# Breaking change detection and commit
 git add -A
-/commit-message --breaking
-"Mark breaking changes appropriately if present"
+/commit --breaking
+"Detect breaking changes and commit appropriately"
+
+# Preview before committing
+git add .
+/commit --dry-run
+"Preview commit message without executing"
 ```
 
 ### Important Notes
 
 - **Prerequisites**: Changes must be staged with `git add` beforehand
+- **Automatic Execution**: Commits are applied immediately unless `--dry-run` is used
 - **Limitations**: Unstaged changes are not analyzed
+- **Safety**: Use `--dry-run` to preview commit message before actual commit
 - **Recommendations**: Check existing project commit conventions beforehand
+
+### New Options
+
+- `--dry-run` : Preview commit message without executing commit
+- `--confirm` : Ask for confirmation before executing commit
+- `--amend` : Amend the last commit with new message

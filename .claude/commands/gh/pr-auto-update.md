@@ -61,7 +61,7 @@ Collect and analyze the following information:
 #### Template Processing Priority
 
 1. **Existing PR Description**: **Fully preserve** already written content
-2. **Project Template**: Get structure from `.github/PULL_REQUEST_TEMPLATE.md`
+2. **Project Template**: Get structure from `@COMMIT_AND_PR_GUIDELINES.md`
 3. **Default Template**: Fallback when above doesn't exist
 
 #### Existing Content Preservation Rules
@@ -75,7 +75,7 @@ Collect and analyze the following information:
 #### Using Project Template
 
 ```bash
-# Parse .github/PULL_REQUEST_TEMPLATE.md structure
+# Parse @COMMIT_AND_PR_GUIDELINES.md structure
 parse_template_structure() {
   local template_file="$1"
   
@@ -162,7 +162,7 @@ generate_description() {
     echo "$current_body"
   else
     # Generate from template
-    local template_file=".github/PULL_REQUEST_TEMPLATE.md"
+    local template_file="@COMMIT_AND_PR_GUIDELINES.md"
     if [ -f "$template_file" ]; then
       generate_from_template "$(cat "$template_file")" "$changes"
     else
@@ -309,7 +309,7 @@ Implemented {API name} endpoint to support {use case}.
    - Respect content intentionally written by users
 
 2. **Template Priority**:
-   - Existing PR description > `.github/PULL_REQUEST_TEMPLATE.md` > Default
+   - Existing PR description > `@COMMIT_AND_PR_GUIDELINES.md` > Default
    - Fully preserve project-specific template structure
 
 3. **Label Constraints**:
