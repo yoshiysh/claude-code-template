@@ -24,10 +24,12 @@ This template provides a simple configuration optimized for integration with Cla
 
 ### Key Features
 
-- **🚀 Claude Code Integration**: Optimized project memory configuration
-- **📁 Simple Structure**: Start with minimal file structure
-- **📚 Documentation Management**: Systematic management of investigation, planning, and implementation records
-- **🎯 Flexibility**: Adaptable foundation for any project type
+- **🚀 Claude Code Integration**: Pre-configured CLAUDE.md and .claude/ directory for optimal AI assistance
+- **📁 Minimal Structure**: Clean foundation that scales with your project needs
+- **📚 Workflow Management**: Built-in commands for investigation, planning, implementation, and testing phases
+- **🎯 Language Agnostic**: Works with any programming language or framework
+- **⚙️ Smart Commands**: Single commands (sc/) and workflow commands (wf/) for common development tasks
+- **🛡️ Best Practices**: Pre-configured AI rules for commits, PRs, and code quality
 
 ## Quick Start (3 Steps)
 
@@ -56,10 +58,11 @@ cd your-project-name
 
 ## Prerequisites
 
-- [Claude Code](https://claude.ai/code) access
-- Git version 2.0 or higher
-- Basic familiarity with command-line operations
-- Text editor or IDE of choice
+- [Claude Code](https://claude.ai/code) account with API access
+- Git 2.0+ for version control
+- Node.js 18+ (for command execution and MCP servers)
+- Terminal/command line interface
+- Your preferred code editor (VS Code recommended for optimal Claude Code integration)
 
 ## Template Structure
 
@@ -89,12 +92,14 @@ claude-code-template/
 └── README.md                 # This file
 ```
 
-### 🚀 Included Features
+### 🚀 What's Included
 
-- **Claude Code Optimization**: Maximize AI assistance with project memory settings
-- **Documentation Management**: Systematic record management for investigation, planning, and implementation
-- **AI Rule Settings**: Guidelines for commits, PRs, API naming, etc.
-- **Lightweight Structure**: Start minimal and expand gradually
+- **Intelligent Command System**: 50+ specialized commands for development workflows
+- **MCP Server Integration**: Advanced AI capabilities through Model Context Protocol
+- **Expert Personas**: Specialized AI assistants for frontend, backend, security, and architecture
+- **Project Memory**: Smart context management that learns from your project
+- **Documentation Automation**: Automatic generation and maintenance of project docs
+- **Quality Gates**: Built-in code analysis, testing, and improvement suggestions
 
 ## GitHub Template Usage
 
@@ -124,68 +129,82 @@ cd your-new-repository
 
 To efficiently proceed with AI-assisted development, we recommend executing commands in the following order:
 
-1. **investigate**: Understanding existing code and technical research
+1. **investigate**: Analyze existing code, research technologies, and understand requirements
+
    ```bash
-   # Pre-implementation investigation phase
-   # Results are recorded in docs/investigate/
+   /wf:investigate "user authentication patterns in React apps"
+   # Results saved to docs/investigate/ with findings and recommendations
    ```
 
-2. **plan**: Create implementation plan based on investigation results
+2. **plan**: Create detailed implementation plans based on investigation insights
+
    ```bash
-   # Use investigate results as input
-   # Results are recorded in docs/plan/
+   /wf:plan "secure JWT authentication with refresh tokens"
+   # Generates architecture decisions, task breakdown, and technical specs
    ```
 
-3. **implement**: Implementation based on the plan
+3. **implement**: Execute the plan with AI-guided development
+
    ```bash
-   # Use plan results as input
-   # Results are recorded in docs/implement/
+   /wf:implement "authentication system with React context"
+   # Creates code, handles edge cases, follows best practices
    ```
 
-4. **test**: Testing and verification of implementation
+4. **test**: Comprehensive testing and validation
+
    ```bash
-   # Use implement results as input
-   # Results are recorded in docs/test/
+   /wf:test "authentication flow end-to-end tests"
+   # Generates unit, integration, and e2e tests with coverage
    ```
 
-### Important Workflow Points
+### Workflow Benefits
 
-- **Continuity**: Use each phase's results as input for the next phase
-- **Record Management**: All work is systematically recorded under docs/
-- **Repeatability**: Return to previous phases and re-execute as needed
-- **AI Optimization**: Maximize AI assistance in each phase through Claude Code integration
+- **Intelligent Continuity**: Each phase automatically leverages previous phase outputs
+- **Comprehensive Documentation**: All decisions, code, and tests are systematically documented
+- **Iterative Refinement**: Easily revisit and improve any phase based on new insights
+- **Context Preservation**: Claude Code remembers your project's history and patterns
+- **Quality Assurance**: Built-in validation and best practice enforcement at each step
+- **Team Collaboration**: Shareable documentation and reproducible processes
 
 ## Customization Guide
 
-### Basic Customization
+### Essential Setup Steps
 
-1. **Update Project Information**
-
-   ```bash
-   # Edit the project overview section in CLAUDE.md
-   # Update README.md with project-specific content
-   # Create package.json, requirements.txt, etc. as needed
-   ```
-
-2. **Technology Stack Setup**
+1. **Project Initialization**
 
    ```bash
-   # Add configuration files required for your project
-   # Customize build and test scripts
-   # Update dependency management files
+   # Update CLAUDE.md with your project details
+   # Modify .claude/project/SUMMARY.md with project overview
+   # Configure package.json, requirements.txt, or equivalent for your stack
    ```
 
-3. **Claude Code Integration Customization**
+2. **Technology Stack Configuration**
 
    ```bash
-   # Update the development commands section in CLAUDE.md
-   # Add project-specific important notes
+   # Install dependencies for your chosen framework
+   npm install  # for Node.js projects
+   pip install -r requirements.txt  # for Python projects
+   
+   # Configure build tools, linters, and formatters
+   # Set up testing framework
    ```
 
-### Advanced Customization
+3. **Claude Code Optimization**
 
-- **AI Rules**: Adjust settings in `.ai-rules/` to match your project
-- **Add as Needed**: GitHub workflows, security settings, community files, etc.
+   ```bash
+   # Customize .claude/core/ files for your workflow preferences
+   # Update .ai-rules/ guidelines for your coding standards
+   # Configure MCP servers in .claude/settings.json if needed
+   ```
+
+### Advanced Configuration
+
+- **Custom Commands**: Add project-specific commands in `.claude/commands/sc/`
+- **Workflow Orchestration**: Customize multi-step workflows in `.claude/commands/wf/`
+- **Expert Personas**: Tailor AI personalities in `.claude/core/PERSONAS.md`
+- **MCP Integration**: Configure specialized servers for your domain
+- **CI/CD Integration**: Add GitHub Actions, security scans, and deployment pipelines
+- **Team Standards**: Customize `.ai-rules/` for your organization's practices
 
 ## Examples
 
@@ -200,14 +219,15 @@ cd my-web-app
 
 # 2. Set up for Node.js/React
 npm init -y
-npm install react react-dom
+npm install react react-dom typescript @types/react @types/react-dom
+npm install -D vite @vitejs/plugin-react eslint prettier
 
 # 3. Update CLAUDE.md with project specifics
 # 4. Use workflow commands
-/wf:investigate "analyze current web development trends"
-/wf:plan "modern React application with TypeScript"
-/wf:implement "basic React setup with routing"
-/wf:test "component and integration tests"
+/wf:investigate "modern React development patterns and tooling"
+/wf:plan "TypeScript React app with Vite and testing setup"
+/wf:implement "component architecture with routing and state management"
+/wf:test "comprehensive testing strategy with unit and e2e tests"
 ```
 
 #### API Development Project
@@ -219,30 +239,37 @@ cd my-api
 
 # 2. Set up for Python/FastAPI
 python -m venv venv
-source venv/bin/activate
-pip install fastapi uvicorn
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install fastapi uvicorn sqlalchemy alembic pydantic[email] python-jose[cryptography]
+pip install -D pytest pytest-asyncio httpx black isort
 
 # 3. Follow workflow
-/wf:investigate "REST API best practices"
-/wf:plan "FastAPI with database integration"
-/wf:implement "user authentication endpoints"
-/wf:test "API endpoint testing"
+/wf:investigate "FastAPI best practices and production patterns"
+/wf:plan "scalable API architecture with authentication and database"
+/wf:implement "RESTful endpoints with proper validation and security"
+/wf:test "comprehensive API testing with async test client"
 ```
 
 ### Command Examples
 
 ```bash
-# Analysis and improvement
+# Code analysis and improvement
 /sc:analyze --focus security --depth deep
 /sc:improve --type performance --safe
+/sc:refactor --target "legacy authentication" --modern
 
-# Development workflow
-/sc:implement "user dashboard component" --type component --framework react
-/sc:test --type e2e --with-coverage
+# Feature development
+/sc:implement "user dashboard with real-time updates" --type component --framework react
+/sc:implement "JWT refresh token rotation" --type security --backend
+
+# Testing and quality assurance
+/sc:test --type unit --with-coverage --threshold 90
+/sc:test --type e2e --scenarios "user-journey" --browsers chrome,firefox
 
 # Documentation and maintenance
-/sc:document API --type external --style detailed
-/sc:cleanup --target unused-imports --safe
+/sc:document "API endpoints" --type openapi --auto-generate
+/sc:cleanup --target dependencies --remove-unused
+/sc:security --scan vulnerabilities --fix-minor
 ```
 
 ## Contributing
