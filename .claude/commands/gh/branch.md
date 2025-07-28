@@ -1,50 +1,21 @@
-# Branch Management Command
+# Branch
 
-Intelligent Git branch management with automated naming conventions, branch switching, and comprehensive branch operations. Streamlines Git branch workflows with smart naming, automatic push capabilities, and safety features to prevent common mistakes.
-
-## Quick Start
-
-```bash
-# Most common usage patterns
-/branch create feature/new-feature --push    # Create and push new branch
-/branch auto --type bugfix                   # Auto-generate branch name from changes
-/branch switch develop                       # Switch to existing branch
-/branch list                                 # Show all branches
-```
+Intelligent Git branch management with automated naming conventions, branch switching, and comprehensive branch operations. Streamlines Git branch workflows with smart naming and automatic push capabilities.
 
 ## Usage
 
 ```bash
 /branch [action] [branch-name] [options]
-/branch auto [options]  # Analyze changes and auto-generate branch name
 ```
-
-## Actions
-
-| Action | Description | Example |
-|--------|-------------|--------|
-| `create <branch-name>` | Create new branch with specified name | `/branch create feature/auth` |
-| `auto` | Analyze current changes and create branch with smart naming | `/branch auto --type bugfix` |
-| `switch <branch-name>` | Switch to existing branch | `/branch switch develop` |
-| `list` | List all branches with status | `/branch list --remote` |
-| `delete <branch-name>` | Delete local/remote branch | `/branch delete feature/old` |
-| `rename <old-name> <new-name>` | Rename branch locally and remotely | `/branch rename old new` |
-| `current` | Show current branch info | `/branch current` |
-| `cleanup` | Remove merged branches | `/branch cleanup --dry-run` |
 
 ## Options
 
-| Option | Description | Default | Example |
-|--------|-------------|---------|--------|
-| `--from <branch>` | Base branch to create from | current branch | `--from main` |
-| `--push` | Automatically push to remote after creation | false | `--push` |
-| `--track` | Set up tracking with remote branch | true | `--track` |
-| `--force` | Force operations (delete, push) | false | `--force` |
-| `--remote` | Include remote branch operations | false | `--remote` |
-| `--type <type>` | Branch type for auto mode | feature | `--type bugfix` |
-| `--ticket <id>` | Include ticket/issue ID in branch name | none | `--ticket PROJ-123` |
-| `--dry-run` | Preview operation without executing | false | `--dry-run` |
-| `--pull` | Pull latest changes when switching | false | `--pull` |
+- `--from <branch>` : Base branch to create from (default: current branch)
+- `--push` : Automatically push to remote after creation
+- `--track` : Set up tracking with remote branch
+- `--force` : Force operations (delete, push)
+- `--type <type>` : Branch type for auto mode (feature/bugfix/hotfix/etc)
+- `--ticket <id>` : Include ticket/issue ID in branch name
 
 ## Basic Examples
 
@@ -55,186 +26,137 @@ Intelligent Git branch management with automated naming conventions, branch swit
 # Auto-generate branch name from staged changes
 /branch auto --push
 
-# Auto-generate with specific type
-/branch auto --type bugfix --ticket BUG-123
-
-# Create and push feature branch
-/branch create feature/payment-integration --push
-
 # Switch to existing branch
 /branch switch develop
 
-# List all branches with details
-/branch list --remote
+# List all branches with status
+/branch list
 ```
 
-## Branch Naming Conventions
+## Prerequisites
 
-### Recommended Branch Name Formats
-
-When creating branches, use explicit naming that follows your project's conventions:
-
-1. **GitFlow Convention**
-   ```bash
-   # Feature branches
-   feature/user-authentication
-   feature/payment-integration
-   
-   # Bugfix branches
-   bugfix/login-error
-   bugfix/cart-calculation
-   
-   # Hotfix branches
-   hotfix/security-patch
-   hotfix/critical-bug
-   
-   # Release branches
-   release/1.2.0
-   release/2.0.0-beta
-   ```
-
-2. **GitHub Flow Convention**
-   ```bash
-   # Simple descriptive names
-   add-user-authentication
-   fix-login-error
-   update-documentation
-   ```
-
-3. **Ticket-Based Naming**
-   ```bash
-   # With issue/ticket numbers
-   feature/PROJ-123-user-auth
-   bugfix/BUG-456-login-timeout
-   ```
-
-
-### Common Branch Prefixes
-
-**Standard Prefixes**:
-
-- `feature/` : New features
-- `bugfix/` : Bug fixes  
-- `hotfix/` : Emergency fixes
-- `release/` : Release preparation
-- `chore/` : Maintenance tasks
-- `docs/` : Documentation updates
-- `test/` : Test additions/fixes
-- `refactor/` : Code refactoring
-
-
-### Branch Name Examples
+**Important**: For auto mode, this command analyzes staged changes. You must stage changes with `git add` beforehand for automatic branch naming.
 
 ```bash
-# Feature branches
-/branch create feature/user-dashboard
-/branch create feature/api-v2-endpoints
-
-# Bugfix branches
-/branch create bugfix/fix-memory-leak
-/branch create bugfix/resolve-login-issue
-
-# Release branches
-/branch create release/1.5.0
-/branch create release/2.0.0-rc1
-```
-
-## Smart Branch Naming (Auto Mode)
-
-### Automatic Branch Name Generation
-
-The `auto` action analyzes your staged changes and generates appropriate branch names:
-
-```bash
-# Basic auto-generation
-/branch auto
-# Analyzes changed files and generates: feature/add-user-authentication
-
-# With type specification
-/branch auto --type bugfix
-# Generates: bugfix/fix-login-validation-error
-
-# With ticket number
-/branch auto --ticket PROJ-456
-# Generates: feature/PROJ-456-payment-integration
-
-# Combined options
-/branch auto --type hotfix --ticket HOT-789 --push
-# Generates and pushes: hotfix/HOT-789-critical-security-fix
-```
-
-### How Auto Mode Works
-
-1. **File Analysis**: Examines staged files and their changes
-2. **Content Understanding**: Analyzes code modifications to understand the change purpose
-3. **Smart Categorization**: Determines if changes are features, fixes, refactoring, etc.
-4. **Descriptive Naming**: Creates concise, meaningful branch names
-5. **Convention Compliance**: Follows your project's branch naming conventions
-
-### Auto Mode Examples by Change Type
-
-```bash
-# Adding new authentication files
-$ git add src/auth/*.js
+# Warning displayed if nothing is staged for auto mode
 $ /branch auto
-🎯 Analyzing changes...
+No staged changes found. Please run git add first or specify branch name manually.
+```
+
+### Automatic Branch Creation
+
+The command creates a new Git branch and switches to it automatically. For auto mode, it analyzes staged changes to generate appropriate branch names.
+
+**Implementation Notes**:
+
+- Execute `git checkout -b <branch-name>` with the generated or specified name
+- Display branch creation result and current status
+- Optionally push to remote with `--push` option
+
+### Automatic Project Convention Detection
+
+**Important**: When project-specific branch naming conventions exist, they take priority.
+
+#### 1. Branch Naming Convention Check
+
+Auto-detect settings from the following sources:
+
+- `@COMMIT_AND_PR_GUIDELINES.md`
+- `.github/CONTRIBUTING.md`
+- `.gitbranchrc` configuration file
+- Existing branch patterns in the repository
+
+```bash
+# Search for convention files
+find . -name "*COMMIT*" -o -name "*CONTRIBUTING*" -o -name ".gitbranchrc" | head -1
+```
+
+#### 2. Branch Type Detection
+
+Project-specific branch type examples:
+
+```yaml
+# .gitbranchrc
+branch_types:
+  - feature    # New features
+  - bugfix     # Bug fixes
+  - hotfix     # Emergency fixes
+  - release    # Release preparation
+  - chore      # Maintenance tasks
+  - docs       # Documentation updates
+  - refactor   # Code refactoring
+```
+
+#### 3. Existing Branch Pattern Analysis
+
+```bash
+# Learn naming patterns from existing branches
+git branch --all | grep -E 'feature/|bugfix/|hotfix/' | head -10
+
+# Common prefix statistics
+git branch --all | grep -oE '^[^/]+/' | sort | uniq -c | sort -nr
+```
+
+### Automatic Branch Naming (Auto Mode)
+
+Automatically generate branch names based on staged changes analysis:
+
+1. **File Analysis**: Examine staged files and their changes
+2. **Content Understanding**: Analyze code modifications to understand purpose
+3. **Smart Categorization**: Determine if changes are features, fixes, etc.
+4. **Descriptive Naming**: Create concise, meaningful branch names
+
+```bash
+# Auto-generate branch name
+$ /branch auto
+🎯 Analyzing staged changes...
 📝 Detected: New authentication implementation
 🌿 Generated: feature/add-authentication-system
-
-# Fixing validation bugs
-$ git add src/validators/user.js
-$ /branch auto --type bugfix
-🎯 Analyzing changes...
-📝 Detected: Validation logic fixes
-🌿 Generated: bugfix/fix-user-validation-errors
-
-# Documentation updates
-$ git add docs/*.md README.md
-$ /branch auto
-🎯 Analyzing changes...
-📝 Detected: Documentation improvements
-🌿 Generated: docs/update-api-documentation
 ```
 
-## Advanced Features
+### Branch Actions
 
-### 1. Branch Creation with Context
+#### Create Branch
 
 ```bash
-# Create from specific branch
-/branch create feature/new-dashboard --from main
+# Create new branch with specified name
+/branch create <branch-name>
 
-# Create bugfix branch from develop
-/branch create bugfix/PROJ-123-login-fix --from develop
-
-# Create release branch and push
-/branch create release/2.0.0 --from develop --push
+# Create from specific base branch
+/branch create feature/new-feature --from main
 ```
 
-### 2. Branch Switching
+#### Auto Branch
+
+```bash
+# Auto-generate branch name from staged changes
+/branch auto
+
+# Auto-generate with specific type
+/branch auto --type bugfix
+
+# Auto-generate with ticket number
+/branch auto --ticket PROJ-123
+```
+
+#### Switch Branch
 
 ```bash
 # Switch to existing branch
-/branch switch develop
+/branch switch <branch-name>
 
-# Switch to main and pull latest
+# Switch and pull latest changes
 /branch switch main --pull
-
-# Switch to feature branch
-/branch switch feature/new-ui
 ```
 
-### 3. Branch Management
+#### List Branches
 
 ```bash
-# Delete merged branches
-/branch delete --merged
+# List all local branches
+/branch list
 
-# Delete with remote
-/branch delete feature/old-feature --remote
-
-# Rename with remote update
-/branch rename old-name new-name --remote
+# List all branches including remote
+/branch list --remote
 ```
 
 ### Output Examples
@@ -261,304 +183,168 @@ $ /branch create feature/user-dashboard --push
 **Implementation Example**:
 
 ```bash
-#!/bin/bash
-set -euo pipefail
+# Get branch name from input or auto-generate
+BRANCH_NAME="$1"
 
-# Function to validate branch name
-validate_branch_name() {
-    local branch_name="$1"
-    local max_length=50
-    
-    # Check for invalid characters
-    if [[ ! "$branch_name" =~ ^[a-zA-Z0-9/_-]+$ ]]; then
-        echo "❌ Invalid branch name. Use only letters, numbers, /, _, and -"
-        return 1
-    fi
-    
-    # Check length
-    if [[ ${#branch_name} -gt $max_length ]]; then
-        echo "❌ Branch name too long. Maximum $max_length characters."
-        return 1
-    fi
-    
-    # Check for protected branch patterns
-    if [[ "$branch_name" =~ ^(main|master|develop)$ ]]; then
-        echo "❌ Cannot create protected branch name: $branch_name"
-        return 1
-    fi
-    
-    return 0
-}
+# Validate branch name
+if [[ ! "$BRANCH_NAME" =~ ^[a-zA-Z0-9/_-]+$ ]]; then
+    echo "❌ Invalid branch name. Use only letters, numbers, /, _, and -"
+    exit 1
+fi
 
-# Function to create branch with safety checks
-create_branch() {
-    local branch_name="$1"
-    local base_branch="${2:-HEAD}"
-    local should_push="${3:-false}"
-    
-    # Validate branch name
-    validate_branch_name "$branch_name" || return 1
-    
-    # Check if branch already exists
-    if git show-ref --quiet refs/heads/"$branch_name"; then
-        echo "⚠️  Branch '$branch_name' already exists locally"
-        return 1
-    fi
-    
-    # Stash changes if any
-    if ! git diff --quiet || ! git diff --cached --quiet; then
-        echo "📦 Stashing uncommitted changes..."
-        git stash push -m "Auto-stash before creating branch $branch_name"
-    fi
-    
-    # Create branch
-    echo "🚀 Creating branch from $base_branch..."
-    git checkout -b "$branch_name" "$base_branch"
-    
-    # Push if requested
-    if [[ "$should_push" == "true" ]]; then
-        echo "📤 Pushing to remote..."
-        git push -u origin "$branch_name" || {
-            echo "❌ Failed to push branch"
-            return 1
-        }
-    fi
-    
-    # Display success message
-    cat << EOF
-🌿 Branch Created Successfully
+# Create branch
+git checkout -b "$BRANCH_NAME"
+
+# Push with tracking if --push flag is set
+if [[ "$*" == *"--push"* ]]; then
+    git push -u origin "$BRANCH_NAME"
+fi
+
+# Display result
+cat << EOF
+🌿 Creating Branch
 ━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📋 Branch Details:
-   Name: $branch_name
-   Base: $base_branch
-   Remote: $(if [[ "$should_push" == "true" ]]; then echo "origin/$branch_name"; else echo "not pushed"; fi)
+   Name: $BRANCH_NAME
+   Base: $(git rev-parse --abbrev-ref HEAD)
    
-✅ Ready to work on $branch_name
+✅ Branch created successfully
 EOF
-}
-
-# Main execution
-BRANCH_NAME="$1"
-BASE_BRANCH="${2:-HEAD}"
-SHOULD_PUSH="false"
-
-# Parse options
-for arg in "$@"; do
-    case $arg in
-        --push) SHOULD_PUSH="true" ;;
-        --from=*) BASE_BRANCH="${arg#*=}" ;;
-    esac
-done
-
-# Execute
-create_branch "$BRANCH_NAME" "$BASE_BRANCH" "$SHOULD_PUSH"
 ```
 
-### Branch Status Display
+### Branch Naming Conventions
 
-```bash
-$ /branch list
+#### Recommended Formats
 
-📊 Branch Overview
-━━━━━━━━━━━━━━━━━━━━━━━━━
+1. **GitFlow Convention**
+   ```
+   feature/user-authentication
+   bugfix/login-error
+   hotfix/security-patch
+   release/1.2.0
+   ```
 
-🌿 Local Branches:
-   * main                    ↑2 ↓0   [origin/main]
-     develop                 ↑0 ↓3   [origin/develop]
-     feature/user-auth       ↑5 ↓0   [origin/feature/user-auth]
-     bugfix/login-error      local only
+2. **GitHub Flow Convention**
+   ```
+   add-user-authentication
+   fix-login-error
+   update-documentation
+   ```
 
-🌐 Remote Branches:
-   origin/feature/api-v2
-   origin/release/1.2.0
-   
-📈 Summary:
-   Total: 4 local, 6 remote
-   Unmerged: 2
-   Stale: 1 (30+ days)
-```
+3. **Ticket-Based Naming**
+   ```
+   feature/PROJ-123-user-auth
+   bugfix/BUG-456-login-timeout
+   ```
 
-### Protection Rules
+### Smart Features
 
-```bash
-# Check before operations
-/branch delete main
-⚠️  Cannot delete protected branch 'main'
+#### 1. Automatic Change Classification (Staged files only)
 
-# Override with force
-/branch delete feature/old --force --remote
-✅ Branch deleted locally and remotely
-```
+- New file addition → `feature`
+- Error fix patterns → `bugfix`
+- Security fixes → `hotfix`
+- Config file changes → `chore`
+- README/docs updates → `docs`
 
-### Integration Features
+#### 2. Automatic Convention Detection
 
-#### 1. CI/CD Status
+- `@COMMIT_AND_PR_GUIDELINES.md` compliance
+- Existing branch pattern analysis
+- Project-specific naming rules
 
-```bash
-/branch list --status
-# Shows CI pipeline status for each branch
-```
+#### 3. Auto Mode Analysis Details
 
-#### 2. PR Integration
+Information used for analysis (read-only):
 
-```bash
-/branch create feature --open-pr
-# Creates branch and opens PR draft
-```
-
-#### 3. Worktree Support
-
-```bash
-/branch create feature --worktree /path/to/worktree
-# Creates branch in separate worktree
-```
+- `git diff --staged --name-only` - List of changed files
+- `git diff --staged` - Actual change content
+- `git status --porcelain` - File status
 
 ### Best Practices
 
 1. **Consistent Naming**: Follow project conventions automatically
-2. **Clean History**: Delete merged branches regularly
-3. **Remote Sync**: Always push feature branches for backup
-4. **Descriptive Names**: Use clear, searchable branch names
-5. **Regular Cleanup**: Use `/branch cleanup` periodically
+2. **Descriptive Names**: Use clear, searchable branch names
+3. **Small Scope**: Create branches for specific features or fixes
+4. **Regular Cleanup**: Delete merged branches regularly
+5. **Remote Sync**: Push feature branches for backup and collaboration
 
 ### Common Patterns
 
-```bash
-# Feature development
-/branch create feature/user-profile --push
+**Examples**:
 
-# Bug fix with ticket number
-/branch create bugfix/BUG-789-login-timeout
+```bash
+# Feature development workflow
+/branch create feature/user-profile --push
+# Work on feature...
+git add . && /commit && /push
+
+# Bug fix workflow
+/branch auto --type bugfix
+# Fix the bug...
+git add . && /commit && /push
 
 # Release preparation
 /branch create release/1.5.0 --from develop
-
-# Hotfix from production
-/branch create hotfix/critical-security-fix --from main --push
 ```
 
 ### Claude Integration
 
 ```bash
-# Create feature branch
+# Create feature branch and start development
 /branch create feature/authentication
-"Create feature/authentication branch"
+"Create feature/authentication branch for new auth system"
 
-# Auto-generate branch from changes
+# Auto-generate branch from staged changes
+git add src/auth/
 /branch auto --push
-"Analyze staged changes and create appropriately named branch"
+"Analyze auth changes and create appropriate branch"
 
-# List branches
-/branch list
-"Show all branches with their status"
+# Switch to development branch
+/branch switch develop
+"Switch to develop branch for integration"
 
-# Delete merged branches
-/branch delete feature/old-feature
-"Delete the specified branch"
+# List branches for status check
+/branch list --remote
+"Show all branches with remote tracking status"
 ```
 
-### Safety Features
+### Important Notes
 
-- **Protected Branches**: Prevents deletion of main, master, develop
-- **Merge Status Check**: Warns before deleting unmerged branches
-- **Remote Sync**: Confirms before deleting remote branches
-- **Stash Handling**: Automatically stashes changes when switching
-- **Backup Creation**: Creates backup tags before destructive operations
+- **Prerequisites**: For auto mode, changes must be staged with `git add`
+- **Automatic Operations**: Branch creation and switching are immediate
+- **Naming Rules**: Follow project-specific conventions when available
+- **Safety**: Validates branch names and checks for conflicts
+- **Recommendations**: Use meaningful names that describe the work being done
 
 ### Configuration
 
 Create `.gitbranchrc` for project-specific settings:
 
 ```yaml
-# Protected branches that cannot be deleted or modified
+# Branch naming patterns
+patterns:
+  feature: "^feature/[a-z0-9-]+$"
+  bugfix: "^bugfix/[a-z0-9-]+$"
+  hotfix: "^hotfix/[a-z0-9-]+$"
+
+# Default options
+defaults:
+  push: false
+  track: true
+  type: feature
+
+# Protected branches
 protected:
   - main
   - master
   - develop
-  - release/*
-  - production
-
-# Default behavior settings  
-defaults:
-  push: false          # Auto-push after creation
-  track: true          # Set up remote tracking
-  stash: true          # Auto-stash uncommitted changes
-  pull: false          # Pull latest when switching
-  
-# Branch name validation rules
-validation:
-  # Regex pattern for branch name validation
-  pattern: "^(feature|bugfix|hotfix|release|chore|docs|test|refactor)/[a-z0-9-]+$"
-  max-length: 50
-  min-length: 5
-  # Forbidden words in branch names
-  forbidden:
-    - temp
-    - test
-    - wip
-    - todo
-
-# Auto mode configuration
-auto:
-  # Depth of analysis for auto naming
-  analyze-depth: full  # full | shallow
-  # How to handle ticket numbers
-  include-ticket: prompt  # always | prompt | never
-  # Default branch type if not detected
-  default-type: feature
-  # Use AI-powered detection
-  smart-detection: true
-  # Patterns for type detection
-  type-patterns:
-    bugfix: ["fix", "bug", "issue", "error"]
-    feature: ["add", "implement", "create", "new"]
-    refactor: ["refactor", "improve", "optimize"]
-    docs: ["document", "readme", "docs"]
-
-# Cleanup settings
-cleanup:
-  # Days before considering branch stale
-  stale-days: 30
-  # Exclude patterns from cleanup
-  exclude:
-    - release/*
-    - hotfix/*
-  # Require confirmation
-  confirm: true
 ```
 
-### Important Notes
+### Advanced Options
 
-#### Safety & Validation
-
-- **Protected Branches**: Cannot delete or modify main, master, develop, or custom protected branches
-- **Branch Name Validation**: Enforces naming conventions and character restrictions
-- **Automatic Stashing**: Uncommitted changes are automatically stashed before branch operations
-- **Remote Sync Checks**: Verifies remote state before push/delete operations
-
-#### Best Practices
-
-- **Explicit Naming**: Always specify the full branch name including prefix (or use auto mode)
-- **Auto Mode**: Requires staged changes to analyze for branch name generation
-- **Naming Convention**: Follow your project's branch naming convention consistently
-- **Regular Cleanup**: Use `/branch cleanup` to remove merged branches periodically
-- **Ticket Integration**: Include ticket IDs for better traceability
-
-#### Technical Considerations
-
-- **Valid Characters**: Branch names can contain letters, numbers, `/`, `_`, and `-`
-- **Maximum Length**: Default 50 characters (configurable)
-- **Remote Operations**: Require appropriate Git permissions
-- **Force Operations**: Use with extreme caution, especially with `--remote`
-- **Performance**: Auto mode analysis may take longer on large codebases
-
-#### Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| "Branch already exists" | Use `/branch switch` or delete the existing branch |
-| "Permission denied" | Check Git remote permissions and SSH keys |
-| "Invalid branch name" | Ensure name follows pattern and uses valid characters |
-| "Uncommitted changes" | Changes are auto-stashed, or commit them first |
-| "Remote push failed" | Check network connection and remote repository access |
+- `--dry-run` : Preview branch operations without executing
+- `--confirm` : Ask for confirmation before creating branch
+- `--delete <branch>` : Delete specified branch (with safety checks)
+- `--rename <old> <new>` : Rename branch locally and remotely
