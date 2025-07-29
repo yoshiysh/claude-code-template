@@ -1,186 +1,186 @@
 ## AI Writing Check
 
-AI が生成した文章の機械的なパターンを検出し、より自然な日本語への改善提案を行います。
+Detects mechanical patterns in AI-generated text and provides improvement suggestions for more natural writing.
 
-### 使い方
+### Usage
 
 ```bash
-/ai-writing-check [オプション]
+/ai-writing-check [options]
 ```
 
-### オプション
+### Options
 
-- なし : 現在のファイルまたは選択したテキストを分析
-- `--file <path>` : 特定のファイルを分析
-- `--dir <path>` : ディレクトリ内のファイルを一括分析
-- `--severity <level>` : 検出レベル（all/high/medium）
-- `--fix` : 検出されたパターンを自動修正
+- none : Analyze current file or selected text
+- `--file <path>` : Analyze specific file
+- `--dir <path>` : Batch analyze files in directory
+- `--severity <level>` : Detection level (all/high/medium)
+- `--fix` : Automatically fix detected patterns
 
-### 基本例
+### Basic Examples
 
 ```bash
-# ファイルの AI 臭さをチェック
+# Check AI-like patterns in file
 cat README.md
 /ai-writing-check
-「この文書の AI 臭さをチェックして改善案を提示して」
+"Check this document for AI-like patterns and provide improvement suggestions"
 
-# 特定ファイルの分析
+# Analyze specific file
 /ai-writing-check --file docs/guide.md
-「AI っぽい表現を検出して自然な表現に修正提案して」
+"Detect AI-like expressions and suggest natural alternatives"
 
-# プロジェクト全体のスキャン
+# Scan entire project
 /ai-writing-check --dir . --severity high
-「プロジェクト内の重要な AI 臭さ問題だけを報告して」
+"Report only critical AI-like issues in the project"
 ```
 
-### 検出パターン
+### Detection Patterns
 
-#### 1. リスト書式の機械的パターン
+#### 1. Mechanical List Formatting Patterns
 
 ```markdown
-検出される例:
+Detected examples:
 
-- **重要**: これは重要な項目です
-- 完了した項目（チェックマーク付き）
-- ホットな話題（炎絵文字付き）
-- 開始準備完了（ロケット絵文字付き）
+- **Important**: This is an important item
+- Completed item (with checkmark)
+- Hot topic (with fire emoji)
+- Ready to launch (with rocket emoji)
 
-改善例:
+Improved examples:
 
-- 重要な項目: これは重要な項目です
-- 完了した項目
-- 注目の話題
-- 開始準備完了
+- Important item: This is an important item
+- Completed item
+- Notable topic
+- Ready to launch
 ```
 
-#### 2. 誇張的・ハイプ表現
+#### 2. Exaggerated/Hype Expressions
 
 ```markdown
-検出される例:
-革命的な技術で業界を変えます。
-これは完全に問題を解決します。
-魔法のように動作します。
+Detected examples:
+Revolutionary technology that will transform the industry.
+This completely solves the problem.
+Works like magic.
 
-改善例:
-効果的な技術で業界に変化をもたらします。
-多くの問題を解決します。
-スムーズに動作します。
+Improved examples:
+Effective technology that brings change to the industry.
+Solves many problems.
+Works smoothly.
 ```
 
-#### 3. 機械的な強調パターン
+#### 3. Mechanical Emphasis Patterns
 
 ```markdown
-検出される例:
-**アイデア**: 新しい提案があります（電球絵文字付き）
-**注意**: 重要な警告事項（警告絵文字付き）
+Detected examples:
+**Idea**: Here's a new proposal (with lightbulb emoji)
+**Warning**: Important warning notice (with warning emoji)
 
-改善例:
-アイデア: 新しい提案があります
-注意事項: 重要な警告事項
+Improved examples:
+Idea: Here's a new proposal
+Notice: Important warning notice
 ```
 
-#### 4. 冗長なテクニカルライティング
+#### 4. Redundant Technical Writing
 
 ```markdown
-検出される例:
-まず最初に設定を行います。
-このツールを使用することができます。
-大幅に性能が向上します。
+Detected examples:
+First, initially set up the configuration.
+You can be able to use this tool.
+Performance improves dramatically.
 
-改善例:
-まず設定を行います。
-このツールを使用できます。
-性能が 30% 向上します。
+Improved examples:
+First, set up the configuration.
+You can use this tool.
+Performance improves by 30%.
 ```
 
-### Claude との連携
+### Integration with Claude
 
 ```bash
-# 文書全体の AI 臭さ分析
+# Analyze entire document for AI-like patterns
 cat article.md
 /ai-writing-check
-「以下の観点で分析して改善案を提示：
-1. 機械的な表現の検出
-2. 自然な日本語への修正提案
-3. 優先度別の改善リスト」
+"Analyze from the following perspectives and provide improvement suggestions:
+1. Detection of mechanical expressions
+2. Suggestions for natural language improvements
+3. Priority-based improvement list"
 
-# 特定パターンにフォーカス
+# Focus on specific patterns
 /ai-writing-check --file blog.md
-「特に誇張表現と冗長な表現に注目して改善提案して」
+"Focus on exaggerated expressions and redundant language for improvement suggestions"
 
-# 複数ファイルの一括チェック
+# Batch check multiple files
 find . -name "*.md" -type f
 /ai-writing-check --dir docs/
-「ドキュメント全体の AI 臭さを分析してサマリーを作成」
+"Analyze AI-like patterns across all documentation and create a summary"
 ```
 
-### 詳細例
+### Detailed Examples
 
 ```bash
-# 改善前後の比較
+# Before/after comparison
 /ai-writing-check --file draft.md
-「AI 臭い表現を検出して、以下の形式で提示：
-- 問題箇所（行番号付き）
-- 問題の種類と理由
-- 具体的な改善案
-- 改善による効果」
+"Detect AI-like expressions and present in the following format:
+- Problem locations (with line numbers)
+- Problem type and reasoning
+- Specific improvement suggestions
+- Expected impact of improvements"
 
-# 自動修正モード
+# Automatic fix mode
 /ai-writing-check --file report.md --fix
-「検出されたパターンを自動修正して結果を報告」
+"Automatically fix detected patterns and report results"
 
-# プロジェクトの AI 臭さレポート
+# Project AI-like pattern report
 /ai-writing-check --dir . --severity all
-「プロジェクト全体の AI 臭さを分析して：
-1. 統計情報（パターン別の検出数）
-2. 最も問題のあるファイル TOP 5
-3. 改善優先度マトリックス
-4. 段階的な改善計画」
+"Analyze AI-like patterns across the entire project:
+1. Statistical information (detection count by pattern)
+2. Top 5 most problematic files
+3. Improvement priority matrix
+4. Phased improvement plan"
 ```
 
-### 高度な使用例
+### Advanced Usage Examples
 
 ```bash
-# カスタムルールの適用
+# Apply custom rules
 /ai-writing-check --file spec.md
-「技術仕様書として以下の追加基準でチェック：
-- 曖昧な表現（適切な、必要に応じて）
-- 具体性の欠如（高速な → 具体的な数値）
-- 一貫性のない用語使用」
+"Check as technical specification with additional criteria:
+- Vague expressions (appropriate, as needed)
+- Lack of specificity (fast → specific numerical values)
+- Inconsistent terminology usage"
 
-# CI/CD 統合用のチェック
+# CI/CD integration check
 /ai-writing-check --dir docs/ --severity high
-「GitHub Actions で実行可能な形式で結果を出力：
-- エラー数とファイル名
-- 修正が必要な行番号
-- exit code の設定」
+"Output results in GitHub Actions-compatible format:
+- Error count and file names
+- Line numbers requiring fixes
+- Exit code configuration"
 
-# スタイルガイド準拠チェック
+# Style guide compliance check
 /ai-writing-check --file manual.md
-「会社のスタイルガイドに基づいて追加チェック：
-- 敬語の使用（です・ます調の統一）
-- 専門用語の適切な使用
-- 読者への配慮」
+"Additional checks based on company style guide:
+- Polite language usage (consistency in formal tone)
+- Appropriate use of technical terms
+- Reader consideration"
 ```
 
-### 注意事項
+### Important Notes
 
-- AI 臭さの判定は文脈によって異なるため、提案は参考として扱ってください
-- 技術文書、ブログ、マニュアルなど、文書の種類に応じて基準を調整します
-- すべての提案を受け入れる必要はなく、適切なものを選択してください
-- `--fix` オプションは検出されたパターンを自動的に修正します
+- AI-like pattern detection varies by context, so treat suggestions as reference
+- Criteria are adjusted based on document type (technical docs, blogs, manuals, etc.)
+- You don't need to accept all suggestions - select appropriate ones
+- The `--fix` option automatically corrects detected patterns
 
-### コマンド実行時の動作
+### Command Execution Behavior
 
-`/ai-writing-check` コマンドを実行すると、Claude は以下の処理を行います：
+When the `/ai-writing-check` command is executed, Claude performs the following processes:
 
-1. **パターン検出**: 指定されたファイルやテキストから AI 臭いパターンを検出
-2. **具体的な修正提案**: 各問題に対して行番号付きで修正案を提示
-3. **--fix モード**: 検出されたパターンを自動修正し、結果をサマリー表示
-4. **レポート生成**: 検出数、改善優先度、修正前後の比較を提供
+1. **Pattern Detection**: Detect AI-like patterns from specified files or text
+2. **Specific Fix Suggestions**: Provide fix suggestions with line numbers for each issue
+3. **--fix Mode**: Automatically fix detected patterns and display summary results
+4. **Report Generation**: Provide detection counts, improvement priorities, and before/after comparisons
 
-Claude は実際のファイル内容を読み込み、textlint-rule-preset-ai-writing のルールに基づいて分析を実行します。
+Claude reads actual file content and performs analysis based on textlint-rule-preset-ai-writing rules.
 
-### 参考
+### Reference
 
-このコマンドは [textlint-rule-preset-ai-writing](https://github.com/textlint-ja/textlint-rule-preset-ai-writing) のルールセットを参考に作成されています。AI が生成した文章の機械的なパターンを検出し、より自然な表現を促すための textlint ルールプリセットです。
+This command is created based on the [textlint-rule-preset-ai-writing](https://github.com/textlint-ja/textlint-rule-preset-ai-writing) rule set. It is a textlint rule preset designed to detect mechanical patterns in AI-generated text and promote more natural expressions.

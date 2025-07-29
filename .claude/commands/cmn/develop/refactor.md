@@ -39,12 +39,12 @@ grep -r "TODO\|FIXME\|HACK" . --exclude-dir=node_modules
 #### Extract Method
 
 ```javascript
-// Before: 長大なメソッド
+// Before: Long method
 function processOrder(order) {
-  // 50 行の複雑な処理
+  // 50 lines of complex processing
 }
 
-// After: 責任分離
+// After: Separation of responsibilities
 function processOrder(order) {
   validateOrder(order);
   calculateTotal(order);
@@ -55,7 +55,7 @@ function processOrder(order) {
 #### Replace Conditional with Polymorphism
 
 ```javascript
-// Before: switch 文
+// Before: switch statement
 function getPrice(user) {
   switch (user.type) {
     case 'premium': return basPrice * 0.8;
@@ -63,7 +63,7 @@ function getPrice(user) {
   }
 }
 
-// After: Strategy パターン
+// After: Strategy pattern
 class PremiumPricing {
   calculate(basePrice) { return basePrice * 0.8; }
 }

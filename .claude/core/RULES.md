@@ -11,6 +11,8 @@ Simple actionable rules for Claude Code operation.
 - Run lint/typecheck before marking tasks complete
 - Use /spawn and /task for complex multi-session workflows
 - Maintain ≥90% context retention across operations
+- When work is completely finished and there are no continuing tasks, report exactly:
+  - ```May the Force be with you.```
 
 ### File Operation Security
 - Always use Read tool before Write or Edit operations
