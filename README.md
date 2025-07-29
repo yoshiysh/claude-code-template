@@ -1,6 +1,6 @@
 # Claude Code Template Project
 
-A simple template repository for Claude Code (claude.ai/code) to streamline new project setup and enhance development productivity.
+A comprehensive template repository for Claude Code (claude.ai/code) featuring an intelligent command system, expert personas, and automated workflows to maximize AI-assisted development productivity.
 
 ![Claude Code Compatible](https://img.shields.io/badge/Claude%20Code-Compatible-blue)
 ![GitHub Template](https://img.shields.io/badge/GitHub-Template-success)
@@ -8,28 +8,72 @@ A simple template repository for Claude Code (claude.ai/code) to streamline new 
 ## Table of Contents
 
 - [Overview](#overview)
+- [Key Features](#key-features)
 - [Prerequisites](#prerequisites)
 - [Quick Start (3 Steps)](#quick-start-3-steps)
+- [Installation](#installation)
 - [Template Structure](#template-structure)
-- [GitHub Template Usage](#github-template-usage)
-- [Command Workflow](#command-workflow)
+- [Command System](#command-system)
+- [Expert Personas](#expert-personas)
+- [Workflow Commands](#workflow-commands)
+- [MCP Integration](#mcp-integration)
 - [Customization Guide](#customization-guide)
 - [Examples](#examples)
+- [Best Practices](#best-practices)
 - [Contributing](#contributing)
+- [Troubleshooting](#troubleshooting)
 - [Documentation](#documentation)
+- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
-This template provides a simple configuration optimized for integration with Claude Code. You can start a new project with minimal setup and add features as needed.
+This template provides a sophisticated framework for AI-enhanced development with Claude Code. It includes 50+ specialized commands, 8 expert AI personas, intelligent orchestration, and comprehensive workflow automation.
 
-### Key Features
+### What Makes This Template Special
 
-- **🚀 Claude Code Integration**: Pre-configured CLAUDE.md and .claude/ directory for optimal AI assistance
-- **📁 Minimal Structure**: Clean foundation that scales with your project needs
-- **📚 Workflow Management**: Built-in commands for investigation, planning, implementation, and testing phases
-- **🎯 Language Agnostic**: Works with any programming language or framework
-- **⚙️ Smart Commands**: Single commands (sc/) and workflow commands (wf/) for common development tasks
-- **🛡️ Best Practices**: Pre-configured AI rules for commits, PRs, and code quality
+- **🧠 Intelligent Command System**: Context-aware commands that adapt to your project needs
+- **🎭 Expert AI Personas**: Specialized assistants for security, architecture, frontend, mobile, QA, and more
+- **🔄 Automated Workflows**: Multi-phase development cycles from investigation to deployment
+- **🛡️ Built-in Quality Gates**: Automatic code analysis, security checks, and performance optimization
+- **📚 Smart Documentation**: Self-maintaining project knowledge base
+- **🔌 MCP Server Integration**: Extended AI capabilities through Model Context Protocol
+
+## Key Features
+
+### Core Capabilities
+
+- **Command Framework** - 50+ specialized commands organized by category
+- **Expert System** - 8 AI personas with domain-specific expertise
+- **Workflow Automation** - End-to-end development workflows
+- **Quality Assurance** - Built-in testing, security, and performance checks
+- **Documentation Engine** - Automatic documentation generation and maintenance
+- **Project Memory** - Intelligent context management across sessions
+- **MCP Integration** - Advanced AI server capabilities
+
+### Command Categories
+
+- **GitHub Operations** (`gh/`) - Branch management, PR creation, CI/CD integration
+- **Single Commands** (`sc/`) - Focused development tasks
+  - Analysis - Code analysis and troubleshooting
+  - Development - Implementation and design
+  - Documentation - Automated docs generation
+  - Quality - Testing and improvements
+- **Workflow Commands** (`wf/`) - Multi-phase development processes
+- **Common Commands** (`cmn/`) - Shared utilities and cognitive tools
+
+## Prerequisites
+
+### Required Tools
+- [Claude Code](https://claude.ai/code) account with API access
+- Git 2.0+ for version control
+- Node.js 18+ (for command execution and MCP servers)
+- Terminal/command line interface
+- Your preferred code editor (VS Code recommended)
+
+### Optional Tools
+- `jq` - JSON processor for advanced script operations
+- `gh` CLI - GitHub command line tool for PR/issue management
+- `npm` or `yarn` - Package managers for Node.js dependencies
 
 ## Quick Start (3 Steps)
 
@@ -37,279 +81,421 @@ This template provides a simple configuration optimized for integration with Cla
 
 Click the **"Use this template"** button above or [Create from template](https://github.com/yoshiysh/claude-code-template/generate)
 
-### 2. Customize Project
+### 2. Clone and Configure
 
 ```bash
-# Clone the new repository
+# Clone your new repository
 git clone https://github.com/yourusername/your-project-name.git
 cd your-project-name
 
-# Update CLAUDE.md with project details
-# Edit the project overview section
+# Install dependencies (if using MCP servers)
+npm install
+
+# Configure project details
+# Update CLAUDE.md with your project specifics
+# Edit .claude/project/SUMMARY.md
 ```
 
-### 3. Start Project
+### 3. Start Development
 
 ```bash
-# Add necessary configuration files
-# package.json, requirements.txt, go.mod, etc.
-# Create files required for your project
+# Use workflow commands for comprehensive development
+/wf:investigate "your project requirements"
+/wf:plan "technical architecture and features"
+/wf:implement "core functionality"
+/wf:test "comprehensive test coverage"
 ```
 
-## Prerequisites
+## Installation
 
-- [Claude Code](https://claude.ai/code) account with API access
-- Git 2.0+ for version control
-- Node.js 18+ (for command execution and MCP servers)
-- Terminal/command line interface
-- Your preferred code editor (VS Code recommended for optimal Claude Code integration)
+### Standard Installation
+
+```bash
+# 1. Create from template
+gh repo create my-project --template yoshiysh/claude-code-template
+cd my-project
+
+# 2. Install MCP dependencies (optional)
+npm install
+
+# 3. Configure Claude Code
+# Open in Claude Code and let it discover the configuration
+```
+
+### Manual Installation
+
+```bash
+# 1. Clone the template
+git clone https://github.com/yoshiysh/claude-code-template.git my-project
+cd my-project
+
+# 2. Remove git history
+rm -rf .git
+git init
+
+# 3. Create your repository
+git add .
+git commit -m "Initial commit from Claude Code template"
+git remote add origin https://github.com/yourusername/my-project.git
+git push -u origin main
+```
+
+### Verification
+
+```bash
+# Verify installation
+ls -la .claude/  # Check Claude configuration
+cat CLAUDE.md     # Review project memory
+```
 
 ## Template Structure
 
-### 📁 File Structure
+### 📁 Complete File Structure
 
 ```text
 claude-code-template/
-├── .claude/                   # Claude Code configuration
-│   ├── commands/              # Custom command definitions
-│   │   ├── sc/               # Single commands
-│   │   └── wf/               # Workflow commands
-│   ├── core/                 # Core system files
-│   │   ├── COMMANDS.md       # Command framework
-│   │   ├── FLAGS.md          # Flag system
-│   │   ├── MCP.md            # MCP server integration
-│   │   ├── ORCHESTRATOR.md   # Intelligent routing
-│   │   ├── PERSONAS.md       # Expert personas
-│   │   └── RULES.md          # System rules
-│   ├── project/              # Project-specific configuration
-│   │   └── SUMMARY.md        # Project summary
-│   └── settings.json         # Claude Code settings
-├── .ai-rules/                # AI-related rule settings
-│   ├── API_FUNCTION_NAMING.md
-│   ├── COMMIT_AND_PR_GUIDELINES.md
-│   └── ISSUE_GUIDELINES.md
-├── CLAUDE.md                 # Claude Code project memory
-└── README.md                 # This file
+├── .claude/                      # Claude Code configuration
+│   ├── agents/                   # Expert AI personas
+│   │   └── roles/               # Specialized assistant roles
+│   │       ├── analyzer.md      # Root cause analysis expert
+│   │       ├── architect.md     # System design specialist
+│   │       ├── frontend.md      # UI/UX and frontend expert
+│   │       ├── mobile.md        # Mobile development specialist
+│   │       ├── performance.md   # Performance optimization expert
+│   │       ├── qa.md            # Test engineering specialist
+│   │       ├── reviewer.md      # Code review expert
+│   │       └── security.md      # Security specialist
+│   ├── commands/                 # Command definitions
+│   │   ├── gh/                  # GitHub operations
+│   │   │   ├── branch.md        # Smart branch management
+│   │   │   ├── commit.md        # Intelligent commits
+│   │   │   ├── pr-create.md     # PR automation
+│   │   │   └── ...              # More GitHub commands
+│   │   ├── sc/                  # Single commands
+│   │   │   ├── analysis/        # Code analysis tools
+│   │   │   ├── dev/             # Development commands
+│   │   │   ├── docs/            # Documentation tools
+│   │   │   └── quality/         # Quality commands
+│   │   ├── wf/                  # Workflow commands
+│   │   │   ├── investigate.md   # Research workflow
+│   │   │   ├── plan.md          # Planning workflow
+│   │   │   ├── implement.md     # Implementation workflow
+│   │   │   └── test.md          # Testing workflow
+│   │   └── cmn/                 # Common utilities
+│   │       ├── cogitation/      # Thinking tools
+│   │       ├── design/          # Design utilities
+│   │       └── develop/         # Development helpers
+│   ├── core/                    # Core system files
+│   │   ├── COMMANDS.md          # Command framework
+│   │   ├── FLAGS.md             # Flag system
+│   │   ├── MCP.md               # MCP integration
+│   │   ├── MODES.md             # Operating modes
+│   │   ├── ORCHESTRATOR.md      # Intelligent routing
+│   │   ├── PERSONAS.md          # Expert personas
+│   │   ├── PRINCIPLES.md        # Design principles
+│   │   └── RULES.md             # System rules
+│   ├── project/                 # Project configuration
+│   │   └── SUMMARY.md           # Project overview
+│   ├── scripts/                 # Automation scripts
+│   │   ├── auto-comment.sh      # Comment automation
+│   │   ├── check-ai-commit.sh   # Commit validation
+│   │   ├── check-continue.sh    # Continuation logic
+│   │   └── ...                  # More scripts
+│   └── settings.json            # Claude Code settings
+├── .ai-rules/                   # AI behavior rules
+│   ├── API_FUNCTION_NAMING.md   # API naming conventions
+│   ├── COMMIT_AND_PR_GUIDELINES.md # Git guidelines
+│   └── ISSUE_GUIDELINES.md      # Issue templates
+├── .mcp.json                    # MCP server configuration
+├── CLAUDE.md                    # Project memory entry
+└── README.md                    # This file
 ```
 
-### 🚀 What's Included
+## Command System
 
-- **Intelligent Command System**: 50+ specialized commands for development workflows
-- **MCP Server Integration**: Advanced AI capabilities through Model Context Protocol
-- **Expert Personas**: Specialized AI assistants for frontend, backend, security, and architecture
-- **Project Memory**: Smart context management that learns from your project
-- **Documentation Automation**: Automatic generation and maintenance of project docs
-- **Quality Gates**: Built-in code analysis, testing, and improvement suggestions
-
-## GitHub Template Usage
-
-### Creating New Repository from Template
-
-1. **Use Template**: Click the "Use this template" button on the GitHub repository page
-2. **Enter Repository Information**:
-   - Repository name: Enter your new project name
-   - Description: Add project description (optional)
-   - Public/Private: Select visibility setting
-3. **Create**: Click "Create repository from template"
-
-### Initial Setup After Template
+### Command Syntax
 
 ```bash
-# Clone the created repository
-git clone https://github.com/yourusername/your-new-repository.git
-cd your-new-repository
+# Basic syntax
+/[prefix]:[command] [arguments] [--flags]
 
-# Update CLAUDE.md to match your project
-# Customize rules under .ai-rules/ as needed
+# Examples
+/sc:analyze --focus security
+/wf:plan "authentication system"
+/gh:commit --breaking
 ```
 
-## Command Workflow
+### GitHub Operations (`/gh:*`)
 
-### Recommended Development Flow
+Streamlined Git and GitHub workflows:
 
-To efficiently proceed with AI-assisted development, we recommend executing commands in the following order:
+```bash
+/gh:branch --auto              # Auto-generate branch from staged changes
+/gh:commit                      # Generate intelligent commit messages
+/gh:pr-create                   # Create PR with analysis
+/gh:push                        # Smart push with checks
+/gh:pr-review                  # Review pull requests
+/gh:check-ci                   # Check CI/CD status
+```
 
-1. **investigate**: Analyze existing code, research technologies, and understand requirements
+### Single Commands (`/sc:*`)
 
-   ```bash
-   /wf:investigate "user authentication patterns in React apps"
-   # Results saved to docs/investigate/ with findings and recommendations
-   ```
+Focused development tasks:
 
-2. **plan**: Create detailed implementation plans based on investigation insights
+```bash
+# Analysis commands
+/sc:analyze --focus security    # Security-focused analysis
+/sc:explain "complex function"  # Code explanation
+/sc:troubleshoot "error msg"    # Debug assistance
 
-   ```bash
-   /wf:plan "secure JWT authentication with refresh tokens"
-   # Generates architecture decisions, task breakdown, and technical specs
-   ```
+# Development commands
+/sc:implement "feature" --type component
+/sc:design "architecture" --patterns
+/sc:build --optimize
 
-3. **implement**: Execute the plan with AI-guided development
+# Documentation commands
+/sc:document "API" --format openapi
+/sc:index README.md            # Generate comprehensive docs
 
-   ```bash
-   /wf:implement "authentication system with React context"
-   # Creates code, handles edge cases, follows best practices
-   ```
+# Quality commands
+/sc:test --type unit --coverage
+/sc:improve --focus performance
+/sc:cleanup --target dependencies
+```
 
-4. **test**: Comprehensive testing and validation
+### Workflow Commands (`/wf:*`)
 
-   ```bash
-   /wf:test "authentication flow end-to-end tests"
-   # Generates unit, integration, and e2e tests with coverage
-   ```
+End-to-end development workflows:
 
-### Workflow Benefits
+```bash
+/wf:investigate "authentication patterns"
+# → Research, analysis, recommendations
 
-- **Intelligent Continuity**: Each phase automatically leverages previous phase outputs
-- **Comprehensive Documentation**: All decisions, code, and tests are systematically documented
-- **Iterative Refinement**: Easily revisit and improve any phase based on new insights
-- **Context Preservation**: Claude Code remembers your project's history and patterns
-- **Quality Assurance**: Built-in validation and best practice enforcement at each step
-- **Team Collaboration**: Shareable documentation and reproducible processes
+/wf:plan "secure JWT implementation"
+# → Architecture, tasks, specifications
+
+/wf:implement "auth system with refresh tokens"
+# → Code generation, best practices
+
+/wf:test "auth flow coverage"
+# → Unit, integration, e2e tests
+```
+
+## Expert Personas
+
+### Available Specialists
+
+1. **🔍 Analyzer** - Root cause analysis, 5 Whys, systems thinking
+2. **🏗️ Architect** - System design, Evidence-First approach, MECE analysis
+3. **🎨 Frontend** - UI/UX, WCAG compliance, React/Vue/Angular
+4. **📱 Mobile** - iOS/Android, cross-platform, Touch-First design
+5. **⚡ Performance** - Core Web Vitals, optimization, RAIL model
+6. **🧪 QA** - Test strategies, coverage analysis, automation
+7. **👁️ Reviewer** - Code review, Clean Code principles, best practices
+8. **🛡️ Security** - OWASP Top 10, vulnerability detection, secure coding
+
+### Activation
+
+Personas activate automatically based on context or can be explicitly invoked:
+
+```bash
+/role security "review authentication implementation"
+/role-debate "microservices vs monolith" --personas architect,reviewer
+/role-help frontend "optimize React performance"
+```
+
+## MCP Integration
+
+### Configured Servers
+
+- **GitHub** - Repository operations and automation
+- **Notion** - Documentation and knowledge management
+- **Context7** - Library documentation and examples
+- **Fetch** - Web content retrieval
+- **DeepWiki** - GitHub repository insights
+- **IDE** - VS Code integration
+- **Sequential Thinking** - Complex problem solving
+
+### Usage Example
+
+```bash
+# MCP servers enhance command capabilities
+/sc:implement "Stripe integration" --use-context7
+# → Fetches latest Stripe docs and examples
+
+/wf:investigate "React patterns" --use-deepwiki
+# → Analyzes popular React repositories
+```
 
 ## Customization Guide
 
-### Essential Setup Steps
+### Project Setup
 
-1. **Project Initialization**
-
+1. **Update Project Memory**
    ```bash
-   # Update CLAUDE.md with your project details
-   # Modify .claude/project/SUMMARY.md with project overview
-   # Configure package.json, requirements.txt, or equivalent for your stack
+   # Edit CLAUDE.md with your project details
+   # Configure .claude/project/SUMMARY.md
    ```
 
-2. **Technology Stack Configuration**
+2. **Configure Technology Stack**
 
    ```bash
-   # Install dependencies for your chosen framework
-   npm install  # for Node.js projects
-   pip install -r requirements.txt  # for Python projects
-   
-   # Configure build tools, linters, and formatters
-   # Set up testing framework
+   # Add framework-specific files
+   npm init -y  # or equivalent
+   # Install your dependencies
    ```
 
-3. **Claude Code Optimization**
+3. **Customize Commands**
 
    ```bash
-   # Customize .claude/core/ files for your workflow preferences
-   # Update .ai-rules/ guidelines for your coding standards
-   # Configure MCP servers in .claude/settings.json if needed
+   # Add project-specific commands in .claude/commands/sc/
+   # Modify workflows in .claude/commands/wf/
    ```
 
 ### Advanced Configuration
 
-- **Custom Commands**: Add project-specific commands in `.claude/commands/sc/`
-- **Workflow Orchestration**: Customize multi-step workflows in `.claude/commands/wf/`
-- **Expert Personas**: Tailor AI personalities in `.claude/core/PERSONAS.md`
-- **MCP Integration**: Configure specialized servers for your domain
-- **CI/CD Integration**: Add GitHub Actions, security scans, and deployment pipelines
-- **Team Standards**: Customize `.ai-rules/` for your organization's practices
+- **Custom Personas** - Add domain-specific experts
+- **New Commands** - Create project-specific operations
+- **Workflow Extensions** - Add custom development phases
+- **MCP Servers** - Integrate additional AI capabilities
+- **Hook Scripts** - Automate repetitive tasks
 
 ## Examples
 
-### Real-world Usage Examples
-
-#### Starting a Web Application Project
+### Full Stack Web Application
 
 ```bash
-# 1. Create from template
-gh repo create my-web-app --template yoshiysh/claude-code-template
-cd my-web-app
+# 1. Research and planning
+/wf:investigate "modern full-stack architectures with Next.js"
+/wf:plan "e-commerce platform with payments"
 
-# 2. Set up for Node.js/React
-npm init -y
-npm install react react-dom typescript @types/react @types/react-dom
-npm install -D vite @vitejs/plugin-react eslint prettier
+# 2. Implementation
+/sc:implement "product catalog" --type feature --framework nextjs
+/sc:implement "shopping cart" --type component --with-tests
+/sc:implement "Stripe checkout" --type integration
 
-# 3. Update CLAUDE.md with project specifics
-# 4. Use workflow commands
-/wf:investigate "modern React development patterns and tooling"
-/wf:plan "TypeScript React app with Vite and testing setup"
-/wf:implement "component architecture with routing and state management"
-/wf:test "comprehensive testing strategy with unit and e2e tests"
-```
-
-#### API Development Project
-
-```bash
-# 1. Create from template
-gh repo create my-api --template yoshiysh/claude-code-template
-cd my-api
-
-# 2. Set up for Python/FastAPI
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install fastapi uvicorn sqlalchemy alembic pydantic[email] python-jose[cryptography]
-pip install -D pytest pytest-asyncio httpx black isort
-
-# 3. Follow workflow
-/wf:investigate "FastAPI best practices and production patterns"
-/wf:plan "scalable API architecture with authentication and database"
-/wf:implement "RESTful endpoints with proper validation and security"
-/wf:test "comprehensive API testing with async test client"
-```
-
-### Command Examples
-
-```bash
-# Code analysis and improvement
+# 3. Quality assurance
+/sc:test --type e2e --scenarios "purchase-flow"
 /sc:analyze --focus security --depth deep
-/sc:improve --type performance --safe
-/sc:refactor --target "legacy authentication" --modern
+/role reviewer "review payment implementation"
 
-# Feature development
-/sc:implement "user dashboard with real-time updates" --type component --framework react
-/sc:implement "JWT refresh token rotation" --type security --backend
-
-# Testing and quality assurance
-/sc:test --type unit --with-coverage --threshold 90
-/sc:test --type e2e --scenarios "user-journey" --browsers chrome,firefox
-
-# Documentation and maintenance
-/sc:document "API endpoints" --type openapi --auto-generate
-/sc:cleanup --target dependencies --remove-unused
-/sc:security --scan vulnerabilities --fix-minor
+# 4. Documentation
+/sc:document "API endpoints" --format openapi
+/sc:index README.md
 ```
+
+### Mobile Application
+
+```bash
+# 1. Setup and research
+/role mobile "React Native vs Flutter comparison"
+/wf:investigate "mobile app state management patterns"
+
+# 2. Development
+/sc:implement "navigation system" --type mobile --framework react-native
+/sc:implement "offline sync" --type feature --with-tests
+
+# 3. Platform-specific
+/role mobile "iOS app store requirements"
+/sc:implement "push notifications" --platform ios
+```
+
+## Best Practices
+
+### Command Usage
+
+1. **Start with Workflows** - Use `/wf:*` commands for comprehensive approaches
+2. **Leverage Personas** - Activate relevant experts for specialized tasks
+3. **Maintain Context** - Use project memory effectively
+4. **Iterate Frequently** - Small, focused commands over large requests
+5. **Document Decisions** - Commands automatically maintain documentation
+
+### Project Organization
+
+1. **Consistent Naming** - Follow established patterns
+2. **Regular Commits** - Use `/gh:commit` for meaningful messages
+3. **Test Coverage** - Aim for >80% with `/sc:test`
+4. **Security First** - Regular `/sc:analyze --focus security`
+5. **Performance Monitoring** - Use performance persona regularly
 
 ## Contributing
 
 ### How to Contribute
 
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Make your changes** following the existing patterns
-4. **Test your changes** with different project types
-5. **Commit your changes**: Use conventional commit format
-6. **Push to the branch**: `git push origin feature/amazing-feature`
-7. **Open a Pull Request**
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Follow the [commit guidelines](.ai-rules/COMMIT_AND_PR_GUIDELINES.md)
+4. Test with multiple project types
+5. Submit PR with comprehensive description
 
-### Contribution Guidelines
+### Areas for Contribution
 
-- Follow the existing file structure and naming conventions
-- Update documentation for any new features
-- Test with multiple project types (web, API, CLI, etc.)
-- Ensure backwards compatibility
-- Add examples for new workflow commands
+- New expert personas for specialized domains
+- Additional workflow commands
+- MCP server integrations
+- Language-specific command sets
+- Documentation improvements
 
-### Reporting Issues
+## Troubleshooting
 
-Please use the [Issue Guidelines](.ai-rules/ISSUE_GUIDELINES.md) when reporting bugs or requesting features.
+### Common Issues
+
+#### MCP Server Connection Issues
+
+```bash
+# Error: MCP server failed to start
+npm install -g npx  # Ensure npx is installed
+# Check Node.js version
+node --version  # Should be 18+
+```
+
+#### Command Not Found
+
+```bash
+# Ensure you're using the correct prefix
+/sc:analyze  # Single command
+/wf:plan     # Workflow command
+/gh:commit   # GitHub command
+```
+
+#### Permission Denied Errors
+
+```bash
+# Check hook scripts are executable
+chmod +x .claude/scripts/*.sh
+```
+
+### Getting Help
+
+- Check the [Command Reference](.claude/core/COMMANDS.md)
+- Review [Troubleshooting Guide](.claude/docs/troubleshooting.md)
+- Open an issue with detailed error information
 
 ## Documentation
 
-### Core Documentation
+### Essential Docs
 
-- 🔧 [CLAUDE.md](CLAUDE.md) - Claude Code specific settings and project memory
-- ⚙️ [.ai-rules/](.ai-rules/) - AI-related rules and guidelines
+- 📘 [CLAUDE.md](CLAUDE.md) - Project memory configuration
+- 📋 [Command Reference](.claude/core/COMMANDS.md) - Complete command guide
+- 🎭 [Personas Guide](.claude/core/PERSONAS.md) - Expert system details
+- 🔄 [Workflow Guide](.claude/commands/wf/) - Development workflows
+- 🛡️ [Security Guide](.claude/agents/roles/security.md) - Security best practices
 
-### Advanced Documentation
+### Advanced Topics
 
-- 🎯 [Command Framework](.claude/core/COMMANDS.md) - Comprehensive command system
-- 🤖 [MCP Integration](.claude/core/MCP.md) - Model Context Protocol servers
-- 🎭 [Expert Personas](.claude/core/PERSONAS.md) - Specialized AI assistants
-- 🚀 [Workflow Commands](.claude/commands/wf/) - Multi-phase development workflows
+- 🧠 [Orchestrator](.claude/core/ORCHESTRATOR.md) - Intelligent routing system
+- 🚀 [MCP Integration](.claude/core/MCP.md) - Server capabilities
+- 🏁 [Flags System](.claude/core/FLAGS.md) - Command modifiers
+- 📐 [Design Principles](.claude/core/PRINCIPLES.md) - Architecture guidelines
+
+## Acknowledgments
+
+- Claude Code team for the excellent AI development platform
+- Open source community for MCP server implementations
+- Contributors who help improve this template
 
 ---
 
-**Note**: This template is continuously maintained and follows evolving best practices. ⭐ Star it to stay updated with the latest features and improvements.
+**⭐ Star this repository** to stay updated with new features and improvements. Join our growing community of AI-enhanced developers!
+
+**📢 Feedback Welcome** - Open issues for bugs, feature requests, or discussions about AI-assisted development practices.
