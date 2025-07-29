@@ -95,126 +95,126 @@ Determine final recommendations
 #### Two-Role Debate Example
 
 ```
-ロール議論: Security vs Performance
+Role Debate: Security vs Performance
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-議題: JWT トークンの有効期限設定
+Topic: JWT Token Expiration Configuration
 
-Security ロールの主張:
-「15 分の短期有効期限を推奨します」
+Security Role's Position:
+"I recommend a short expiration time of 15 minutes"
 
-根拠:
-- OWASP JWT Security Cheat Sheet 準拠
-- トークン漏洩時の被害時間窓を最小化
-- 攻撃者の利用可能時間を制限
+Evidence:
+- OWASP JWT Security Cheat Sheet compliance
+- Minimize damage window during token leakage
+- Limit available time for attackers
 
-懸念事項:
-- 長期有効期限は攻撃リスクが指数関数的に増大
-- コンプライアンス要件（金融系）では短期が必須
+Concerns:
+- Long expiration times exponentially increase attack risk
+- Compliance requirements (financial sector) mandate short periods
 
-成功指標:
-- セキュリティインシデント発生率 < 0.1%
-- 平均攻撃検出時間 < 5 分
+Success Metrics:
+- Security incident rate < 0.1%
+- Average attack detection time < 5 minutes
 
-Performance ロールの反論:
-「2 時間の有効期限を推奨します」
+Performance Role's Counter-argument:
+"I recommend a 2-hour expiration time"
 
-根拠:
-- Google OAuth 2.0 Best Practices 参考
-- 頻繁な再認証によるサーバー負荷増大を回避
-- ユーザー体験（作業中断）の最小化
+Evidence:
+- Reference to Google OAuth 2.0 Best Practices
+- Avoid server load increase from frequent re-authentication
+- Minimize user experience disruption (work interruption)
 
-懸念事項:
-- 15 分間隔の再認証は API 負荷 8 倍増
-- モバイル環境での接続断が頻発
+Concerns:
+- 15-minute interval re-authentication increases API load 8x
+- Frequent connection drops in mobile environments
 
-成功指標:
-- API レスポンス時間 < 200ms 維持
-- サーバー CPU 使用率 < 60%
+Success Metrics:
+- Maintain API response time < 200ms
+- Server CPU usage < 60%
 
-相互議論:
+Cross-debate:
 Security → Performance:
-「サーバー負荷よりもセキュリティ侵害のビジネス損失の方が甚大。
-例: Equifax 事件では 7 億ドルの損失」
+"Security breach business losses are far greater than server load.
+Example: Equifax incident resulted in $700 million in losses"
 
 Performance → Security:
-「リフレッシュトークン機構で両立可能。
-バックグラウンド更新により UX を損なわずセキュリティ確保」
+"Can achieve both with refresh token mechanism.
+Background updates ensure security without compromising UX"
 
 Security → Performance:
-「リフレッシュトークンも攻撃対象。適切な実装が前提」
+"Refresh tokens are also attack targets. Proper implementation is prerequisite"
 
 Performance → Security:
-「段階的アプローチを提案。通常操作 30 分、機密操作 15 分」
+"Propose phased approach. Normal operations 30 minutes, sensitive operations 15 minutes"
 
-妥協点探索:
-共通理解:
-- ユーザー体験とセキュリティの両立が必要
-- リスクレベルに応じた柔軟な対応
-- 実装・運用コストの現実的考慮
+Compromise Exploration:
+Common Understanding:
+- Need to balance user experience and security
+- Flexible response based on risk levels
+- Realistic consideration of implementation/operational costs
 
-Win-Win 要素:
-- リフレッシュトークン機構の活用
-- リスクベース認証の段階的導入
-- 自動ログアウト機能による補完
+Win-Win Elements:
+- Utilize refresh token mechanism
+- Phased introduction of risk-based authentication
+- Supplement with automatic logout functionality
 
-統合結論:
-「30 分有効期限 + リフレッシュトークン + リスクベース認証」
+Integrated Conclusion:
+"30-minute expiration + refresh tokens + risk-based authentication"
 
-実装詳細:
-1. アクセストークン: 30 分有効期限
-2. リフレッシュトークン: 7 日有効期限
-3. 高リスク操作: 15 分で強制再認証
-4. 無操作 30 分で自動ログアウト
+Implementation Details:
+1. Access tokens: 30-minute expiration
+2. Refresh tokens: 7-day expiration
+3. High-risk operations: Force re-authentication at 15 minutes
+4. Automatic logout after 30 minutes of inactivity
 
-段階的実装:
-週 1-2: 基本的な 30 分トークン実装
-週 3-4: リフレッシュトークン機構追加
-月 2: リスクベース認証の導入
+Phased Implementation:
+Weeks 1-2: Basic 30-minute token implementation
+Weeks 3-4: Add refresh token mechanism
+Month 2: Introduce risk-based authentication
 
-成功指標:
-- セキュリティ: インシデント発生率 < 0.1%
-- パフォーマンス: API 負荷増加率 < 20%
-- UX: ユーザー満足度 > 85%
+Success Metrics:
+- Security: Incident rate < 0.1%
+- Performance: API load increase < 20%
+- UX: User satisfaction > 85%
 
-将来の見直し:
-- 3 ヶ月後: 実際の攻撃パターン・負荷状況を評価
-- 6 ヶ月後: より洗練されたリスクベース認証への移行検討
+Future Reviews:
+- 3 months later: Evaluate actual attack patterns and load conditions
+- 6 months later: Consider migration to more sophisticated risk-based authentication
 ```
 
-### 3 ロール議論の場合
+### Three-Role Debate Case
 
 ```
-ロール議論: Architect vs Security vs Performance
+Role Debate: Architect vs Security vs Performance
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-議題: マイクロサービス化の是非
+Topic: Feasibility of Microservices Adoption
 
-Architect ロールの主張:
-「段階的マイクロサービス化を推奨」
-根拠: ドメイン境界の明確化、独立したデプロイ、技術選択の自由度
+Architect Role's Position:
+"Recommend phased microservices adoption"
+Evidence: Domain boundary clarification, independent deployment, technology choice flexibility
 
-Security ロールの懸念:
-「サービス間通信のセキュリティ複雑化」
-根拠: API Gateway、mTLS、分散認証の管理コスト
+Security Role's Concerns:
+"Security complexity in inter-service communication"
+Evidence: Management costs of API Gateway, mTLS, distributed authentication
 
-Performance ロールの懸念:
-「ネットワーク通信によるレイテンシ増加」
-根拠: 内部 API 呼び出しによる N+1 問題、分散トランザクション
+Performance Role's Concerns:
+"Increased latency from network communication"
+Evidence: N+1 problems from internal API calls, distributed transactions
 
-3 者議論:
-Architect → Security: 「API Gateway で集中管理により統制可能」
-Security → Architect: 「単一障害点となるリスク」
-Performance → Architect: 「サービス分割の粒度が重要」
-...（議論継続）
+Three-way Debate:
+Architect → Security: "Centralized management through API Gateway enables control"
+Security → Architect: "Risk of becoming single point of failure"
+Performance → Architect: "Service division granularity is critical"
+...(debate continues)
 
-統合結論:
-「ドメイン駆動設計による段階的分割 + セキュリティファースト設計」
+Integrated Conclusion:
+"Phased division by domain-driven design + security-first design"
 ```
 
-### 効果的な議論パターン
+### Effective Debate Patterns
 
-### 技術選定
+### Technology Selection
 
 ```bash
 /role-debate architect,performance
@@ -227,7 +227,7 @@ Performance → Architect: 「サービス分割の粒度が重要」
 「認証方式: JWT vs Session Cookie」
 ```
 
-### 設計判断
+### Design Decisions
 
 ```bash
 /role-debate security,frontend
@@ -240,7 +240,7 @@ Performance → Architect: 「サービス分割の粒度が重要」
 「テスト戦略とアーキテクチャ設計」
 ```
 
-### トレードオフ問題
+### Trade-off Issues
 
 ```bash
 /role-debate security,performance

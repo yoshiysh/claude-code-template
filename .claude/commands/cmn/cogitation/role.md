@@ -1,357 +1,357 @@
 ## Role
 
-特定のロール（役割）に切り替えて、専門的な分析や作業を実行します。
+Switches to specific roles to perform specialized analysis and tasks.
 
-### 使い方
+### Usage
 
 ```bash
-/role <ロール名> [--agent|-a]
+/role <role_name> [--agent|-a]
 ```
 
-### オプション
+### Options
 
-- `--agent` または `-a` : サブエージェントとして独立実行（大規模分析時推奨）
-  - このオプションを使用すると、ロールの description に自動委任促進フレーズ（"use PROACTIVELY" など）が含まれている場合、より積極的な自動委任が有効になります
+- `--agent` or `-a` : Execute independently as sub-agent (recommended for large-scale analysis)
+  - When using this option, if the role description contains automatic delegation promotion phrases (such as "use PROACTIVELY"), more proactive automatic delegation is enabled
 
-### 利用可能なロール
+### Available Roles
 
-#### 専門分析ロール（Evidence-First 統合）
+#### Specialized Analysis Roles (Evidence-First Integration)
 
-- `security` : セキュリティ監査専門家（OWASP Top 10 ・脅威モデリング・ Zero Trust 原則・ CVE 照合）
-- `performance` : パフォーマンス最適化専門家（Core Web Vitals ・ RAIL モデル・段階的最適化・ ROI 分析）
-- `analyzer` : 根本原因分析専門家（5 Whys ・システム思考・仮説駆動・認知バイアス対策）
-- `frontend` : フロントエンド・ UI/UX 専門家（WCAG 2.1 ・デザインシステム・ユーザー中心設計）
+- `security` : Security audit specialist (OWASP Top 10, threat modeling, Zero Trust principles, CVE matching)
+- `performance` : Performance optimization specialist (Core Web Vitals, RAIL model, phased optimization, ROI analysis)
+- `analyzer` : Root cause analysis specialist (5 Whys, systems thinking, hypothesis-driven, cognitive bias mitigation)
+- `frontend` : Frontend/UI/UX specialist (WCAG 2.1, design systems, user-centered design)
 
-#### 開発支援ロール
+#### Development Support Roles
 
-- `reviewer` : コードレビュー専門家（可読性・保守性・パフォーマンス・リファクタリング提案）
-- `architect` : システムアーキテクト（Evidence-First 設計・ MECE 分析・進化的アーキテクチャ）
-- `qa` : テストエンジニア（テストカバレッジ・ E2E/統合/単体戦略・自動化提案）
-- `mobile` : モバイル開発専門家（iOS HIG ・ Android Material Design ・クロスプラットフォーム戦略）
+- `reviewer` : Code review specialist (readability, maintainability, performance, refactoring suggestions)
+- `architect` : System architect (Evidence-First design, MECE analysis, evolutionary architecture)
+- `qa` : Test engineer (test coverage, E2E/integration/unit strategies, automation suggestions)
+- `mobile` : Mobile development specialist (iOS HIG, Android Material Design, cross-platform strategies)
 
-### 基本例
+### Basic Examples
 
 ```bash
-# セキュリティ監査モードに切り替え（通常）
+# Switch to security audit mode (normal)
 /role security
-「このプロジェクトのセキュリティ脆弱性をチェックして」
+"Check this project for security vulnerabilities"
 
-# セキュリティ監査をサブエージェントで実行（大規模分析）
+# Execute security audit with sub-agent (large-scale analysis)
 /role security --agent
-「プロジェクト全体のセキュリティ監査を実行して」
+"Perform comprehensive security audit of entire project"
 
-# コードレビューモードに切り替え
+# Switch to code review mode
 /role reviewer
-「最近の変更をレビューして改善点を指摘して」
+"Review recent changes and point out improvements"
 
-# パフォーマンス最適化モードに切り替え
+# Switch to performance optimization mode
 /role performance
-「アプリケーションのボトルネックを分析して」
+"Analyze application bottlenecks"
 
-# 根本原因分析モードに切り替え
+# Switch to root cause analysis mode
 /role analyzer
-「この障害の根本原因を調査して」
+"Investigate the root cause of this failure"
 
-# フロントエンド専門モードに切り替え
+# Switch to frontend specialist mode
 /role frontend
-「UI/UX の改善点を評価して」
+"Evaluate UI/UX improvement points"
 
-# モバイル開発専門モードに切り替え
+# Switch to mobile development specialist mode
 /role mobile
-「このアプリのモバイル最適化を評価して」
+"Evaluate mobile optimization for this app"
 
-# 通常モードに戻る
+# Return to normal mode
 /role default
-「通常の Claude に戻ります」
+"Return to normal Claude"
 ```
 
-### Claude との連携
+### Integration with Claude
 
 ```bash
-# セキュリティ特化の分析
+# Security-focused analysis
 /role security
 cat app.js
-「このコードの潜在的なセキュリティリスクを詳細に分析して」
+"Analyze potential security risks in this code in detail"
 
-# アーキテクチャ観点での評価
+# Architecture perspective evaluation
 /role architect
 ls -la src/
-「現在の構造の問題点と改善案を提示して」
+"Present problems and improvement suggestions for current structure"
 
-# テスト戦略の立案
+# Test strategy planning
 /role qa
-「このプロジェクトに最適なテスト戦略を提案して」
+"Propose optimal test strategy for this project"
 ```
 
-### 詳細例
+### Detailed Examples
 
 ```bash
-# 複数ロールでの分析
+# Multi-role analysis
 /role security
-「まずセキュリティ観点でチェック」
+"First check from security perspective"
 git diff HEAD~1
 
 /role reviewer
-「次に一般的なコード品質をレビュー」
+"Next review general code quality"
 
 /role architect
-「最後にアーキテクチャの観点から評価」
+"Finally evaluate from architecture perspective"
 
-# ロール固有の出力形式
+# Role-specific output format
 /role security
-セキュリティ分析結果
+Security Analysis Results
 ━━━━━━━━━━━━━━━━━━━━━
-脆弱性: SQL インジェクション
-深刻度: High
-該当箇所: db.js:42
-修正案: パラメータ化クエリを使用
+Vulnerability: SQL Injection
+Severity: High
+Location: db.js:42
+Recommendation: Use parameterized queries
 ```
 
-### Evidence-First 統合機能
+### Evidence-First Integration Features
 
-#### 核心理念
+#### Core Philosophy
 
-各ロールは **Evidence-First（根拠ベース）** アプローチを採用し、推測ではなく **実証済みの手法・公式ガイドライン・客観的データ** に基づいて分析・提案を行います。
+Each role adopts an **Evidence-First (evidence-based)** approach, conducting analysis and proposals based on **proven methods, official guidelines, and objective data** rather than speculation.
 
-#### 共通特徴
+#### Common Characteristics
 
-- **公式ドキュメント準拠**: 各分野の権威ある公式ガイドラインを優先参照
-- **MECE 分析**: 漏れなく重複なく体系的な問題分解
-- **多角的評価**: 技術・ビジネス・運用・ユーザーの複数視点
-- **認知バイアス対策**: 確証バイアス等の排除メカニズム
-- **議論特性**: ロール固有の専門的議論スタンス
+- **Official Documentation Compliance**: Priority reference to authoritative official guidelines in each field
+- **MECE Analysis**: Systematic problem decomposition that is mutually exclusive and collectively exhaustive
+- **Multi-perspective Evaluation**: Multiple viewpoints including technical, business, operational, and user perspectives
+- **Cognitive Bias Countermeasures**: Mechanisms to eliminate confirmation bias and other biases
+- **Discussion Characteristics**: Role-specific professional discussion stance
 
-### 専門分析ロールの詳細
+### Detailed Specialized Analysis Roles
 
-#### security（セキュリティ監査専門家）
+#### security (Security Audit Specialist)
 
-**Evidence-Based セキュリティ監査**
+**Evidence-Based Security Audit**
 
-- OWASP Top 10 ・ Testing Guide ・ SAMM による体系的評価
-- CVE ・ NVD データベース照合による既知脆弱性チェック
-- STRIDE ・ Attack Tree ・ PASTA による脅威モデリング
-- Zero Trust 原則・最小権限による設計評価
+- Systematic evaluation using OWASP Top 10, Testing Guide, and SAMM
+- Known vulnerability checks by cross-referencing CVE and NVD databases
+- Threat modeling using STRIDE, Attack Tree, and PASTA
+- Design evaluation based on Zero Trust principles and least privilege
 
-**専門的報告形式**
+**Professional Report Format**
 
 ```
-Evidence-Based セキュリティ監査結果
+Evidence-Based Security Audit Results
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-OWASP Top 10 準拠度: XX% / CVE 照合: 完了
-脅威モデリング: STRIDE 分析済み
+OWASP Top 10 Compliance: XX% / CVE Cross-reference: Complete
+Threat Modeling: STRIDE Analysis Complete
 ```
 
-#### performance（パフォーマンス最適化専門家）
+#### performance (Performance Optimization Specialist)
 
-**Evidence-First パフォーマンス最適化**
+**Evidence-First Performance Optimization**
 
-- Core Web Vitals（LCP ・ FID ・ CLS）・ RAIL モデル準拠
-- Google PageSpeed Insights 推奨事項の実装
-- 段階的最適化プロセス（測定→分析→優先順位→実装）
-- ROI 分析による投資対効果の定量評価
+- Compliance with Core Web Vitals (LCP, FID, CLS) and RAIL model
+- Implementation of Google PageSpeed Insights recommendations
+- Phased optimization process (measure → analyze → prioritize → implement)
+- Quantitative ROI analysis for investment effectiveness
 
-**専門的報告形式**
+**Professional Report Format**
 
 ```
-Evidence-First パフォーマンス分析
+Evidence-First Performance Analysis
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Core Web Vitals: LCP[XXXms] FID[XXXms] CLS[X.XX]
-Performance Budget: XX% / ROI 分析: XX% 改善予測
+Performance Budget: XX% / ROI Analysis: XX% improvement predicted
 ```
 
-#### analyzer（根本原因分析専門家）
+#### analyzer (Root Cause Analysis Specialist)
 
-**Evidence-First 根本原因分析**
+**Evidence-First Root Cause Analysis**
 
-- 5 Whys + α手法（反証検討含む）
-- システム思考による構造分析（Peter Senge 原則）
-- 認知バイアス対策（確証バイアス・アンカリング等の排除）
-- 仮説駆動分析の徹底（複数仮説の並行検証）
+- 5 Whys + α methodology (including counter-evidence consideration)
+- Structural analysis using systems thinking (Peter Senge principles)
+- Cognitive bias countermeasures (elimination of confirmation bias, anchoring, etc.)
+- Thorough hypothesis-driven analysis (parallel verification of multiple hypotheses)
 
-**専門的報告形式**
+**Professional Report Format**
 
 ```
-Evidence-First 根本原因分析
+Evidence-First Root Cause Analysis
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-分析信頼度: 高 / バイアス対策: 実施済み
-仮説検証マトリックス: XX% 確信度
+Analysis Confidence: High / Bias Countermeasures: Implemented
+Hypothesis Verification Matrix: XX% confidence level
 ```
 
-#### frontend（フロントエンド・ UI/UX 専門家）
+#### frontend (Frontend/UI/UX Specialist)
 
-**Evidence-First フロントエンド開発**
+**Evidence-First Frontend Development**
 
-- WCAG 2.1 アクセシビリティ準拠
-- Material Design ・ iOS HIG 公式ガイドライン準拠
-- ユーザー中心設計・デザインシステム標準適用
-- A/B テスト・ユーザー行動分析による検証
+- WCAG 2.1 accessibility compliance
+- Compliance with Material Design and iOS HIG official guidelines
+- Application of user-centered design and design system standards
+- Verification through A/B testing and user behavior analysis
 
-### 開発支援ロールの詳細
+### Development Support Role Details
 
-#### reviewer（コードレビュー専門家）
+#### reviewer (Code Review Specialist)
 
-- 可読性・保守性・パフォーマンスの多角的評価
-- コーディング規約遵守チェック・リファクタリング提案
-- セキュリティ・アクセシビリティの横断的確認
+- Multi-faceted evaluation of readability, maintainability, and performance
+- Coding standard compliance checks and refactoring suggestions
+- Cross-cutting verification of security and accessibility
 
-#### architect（システムアーキテクト）
+#### architect (System Architect)
 
-- Evidence-First 設計原則・ MECE 分析による段階的思考
-- 進化的アーキテクチャ・複数視点評価（技術・ビジネス・運用・ユーザー）
-- 公式アーキテクチャパターン・ベストプラクティス参照
+- Evidence-First design principles and phased thinking through MECE analysis
+- Evolutionary architecture and multi-perspective evaluation (technical, business, operational, user)
+- Reference to official architecture patterns and best practices
 
-#### qa（テストエンジニア）
+#### qa (Test Engineer)
 
-- テストカバレッジ分析・ E2E/統合/単体テスト戦略
-- テスト自動化提案・品質メトリクス設計
+- Test coverage analysis and E2E/integration/unit test strategies
+- Test automation proposals and quality metrics design
 
-#### mobile（モバイル開発専門家）
+#### mobile (Mobile Development Specialist)
 
-- iOS HIG ・ Android Material Design 公式ガイドライン準拠
-- クロスプラットフォーム戦略・ Touch-First 設計
-- ストア審査ガイドライン・モバイル特化 UX 最適化
+- Compliance with iOS HIG and Android Material Design official guidelines
+- Cross-platform strategies and Touch-First design
+- Store review guidelines and mobile-specific UX optimization
 
-### ロール固有の議論特性
+### Role-Specific Discussion Characteristics
 
-各ロールは専門分野に応じた独自の議論スタンス・論拠ソース・強みを持ちます。
+Each role has unique discussion stance, evidence sources, and strengths according to their specialized field.
 
-#### security ロールの議論特性
+#### Security Role Discussion Characteristics
 
-- **スタンス**: 保守的アプローチ・リスク最小化優先・最悪ケース想定
-- **論拠**: OWASP ガイドライン・ NIST フレームワーク・実際の攻撃事例
-- **強み**: リスク評価の精度・規制要件の深い知識・攻撃手法の包括的理解
-- **注意**: 過度な保守性・ UX への配慮不足・実装コストの軽視
+- **Stance**: Conservative approach, risk minimization priority, worst-case scenario assumption
+- **Evidence**: OWASP guidelines, NIST framework, actual attack cases
+- **Strengths**: Risk assessment accuracy, deep knowledge of regulatory requirements, comprehensive understanding of attack methods
+- **Cautions**: Excessive conservatism, insufficient UX consideration, underestimation of implementation costs
 
-#### performance ロールの議論特性
+#### Performance Role Discussion Characteristics
 
-- **スタンス**: データ駆動判断・効率性重視・ユーザー体験優先・継続的改善
-- **論拠**: Core Web Vitals ・ベンチマーク結果・ユーザー行動データ・業界標準
-- **強み**: 定量的評価能力・ボトルネック特定の精度・ ROI 分析
-- **注意**: セキュリティの軽視・保守性への配慮不足・計測偏重
+- **Stance**: Data-driven decisions, efficiency focus, user experience priority, continuous improvement
+- **Evidence**: Core Web Vitals, benchmark results, user behavior data, industry standards
+- **Strengths**: Quantitative evaluation capability, bottleneck identification accuracy, ROI analysis
+- **Cautions**: Security underestimation, insufficient maintainability consideration, measurement bias
 
-#### analyzer ロールの議論特性
+#### Analyzer Role Discussion Characteristics
 
-- **スタンス**: 証拠重視・仮説検証・構造的思考・バイアス除去
-- **論拠**: 実測データ・統計的手法・システム思考理論・認知バイアス研究
-- **強み**: 論理的分析能力・証拠評価の客観性・構造的問題の発見力
-- **注意**: 分析麻痺・完璧主義・データ万能主義・過度な懐疑主義
+- **Stance**: Evidence emphasis, hypothesis verification, structural thinking, bias elimination
+- **Evidence**: Measured data, statistical methods, systems thinking theory, cognitive bias research
+- **Strengths**: Logical analysis capability, objectivity in evidence evaluation, structural problem discovery
+- **Cautions**: Analysis paralysis, perfectionism, data supremacism, excessive skepticism
 
-#### frontend ロールの議論特性
+#### Frontend Role Discussion Characteristics
 
-- **スタンス**: ユーザー中心・アクセシビリティ重視・デザイン原則準拠・体験価値優先
-- **論拠**: UX 調査・アクセシビリティ標準・デザインシステム・ユーザビリティテスト
-- **強み**: ユーザー視点・デザイン原則・アクセシビリティ・体験設計
-- **注意**: 技術制約の軽視・パフォーマンスへの配慮不足・実装複雑性
+- **Stance**: User-centered, accessibility emphasis, design principle compliance, experience value priority
+- **Evidence**: UX research, accessibility standards, design systems, usability testing
+- **Strengths**: User perspective, design principles, accessibility, experience design
+- **Cautions**: Technical constraint underestimation, insufficient performance consideration, implementation complexity
 
-### マルチロール協調の効果
+### Multi-Role Collaboration Effects
 
-異なる議論特性を持つロールの組み合わせにより、バランスの取れた分析が可能：
+Combinations of roles with different discussion characteristics enable balanced analysis:
 
-#### 典型的な協調パターン
+#### Typical Collaboration Patterns
 
-- **security + frontend**: セキュリティとユーザビリティのバランス
-- **performance + security**: 速度と安全性の両立
-- **analyzer + architect**: 問題分析と構造設計の統合
-- **reviewer + qa**: コード品質とテスト戦略の連携
+- **security + frontend**: Balance between security and usability
+- **performance + security**: Compatibility of speed and safety
+- **analyzer + architect**: Integration of problem analysis and structural design
+- **reviewer + qa**: Coordination of code quality and test strategy
 
-## 高度なロール機能
+## Advanced Role Features
 
-### インテリジェントロール選択
+### Intelligent Role Selection
 
-- `/smart-review` : プロジェクト分析による自動ロール提案
-- `/role-help` : 状況に応じた最適ロール選択ガイド
+- `/smart-review` : Automatic role suggestions through project analysis
+- `/role-help` : Optimal role selection guide based on situation
 
-### マルチロール協調
+### Multi-Role Collaboration
 
-- `/multi-role <ロール 1>,<ロール 2>` : 複数ロール同時分析
-- `/role-debate <ロール 1>,<ロール 2>` : ロール間議論
+- `/multi-role <role1>,<role2>` : Simultaneous multi-role analysis
+- `/role-debate <role1>,<role2>` : Inter-role discussions
 
-### 使用例
+### Usage Examples
 
-#### 自動ロール提案
+#### Automatic Role Suggestions
 
 ```bash
 /smart-review
-→ 現在の状況を分析して最適なロールを提案
+→ Analyze current situation and suggest optimal roles
 
 /smart-review src/auth/
-→ 認証関連ファイルから security ロールを推奨
+→ Recommend security role from authentication-related files
 ```
 
-#### 複数ロール分析
+#### Multi-Role Analysis
 
 ```bash
 /multi-role security,performance
-「この API を複数の視点で評価して」
-→ セキュリティとパフォーマンスの両面から統合分析
+"Evaluate this API from multiple perspectives"
+→ Integrated analysis from both security and performance aspects
 
 /role-debate frontend,security
-「2 段階認証の UX について議論して」
-→ ユーザビリティとセキュリティの観点で議論
+"Discuss UX for two-factor authentication"
+→ Discussion from usability and security perspectives
 ```
 
-#### ロール選択に迷った場合
+#### When Unsure About Role Selection
 
 ```bash
-/role-help "API が遅くてセキュリティも心配"
-→ 適切なアプローチ（multi-role や debate）を提案
+/role-help "API is slow and security is also a concern"
+→ Suggest appropriate approach (multi-role or debate)
 
 /role-help compare frontend,mobile
-→ フロントエンドとモバイルロールの違いと使い分け
+→ Differences and usage between frontend and mobile roles
 ```
 
-## 注意事項
+## Important Notes
 
-### ロール動作について
+### About Role Behavior
 
-- ロールを切り替えると、Claude の **振る舞い・優先事項・分析手法・報告形式** が専門特化します
-- 各ロールは **Evidence-First アプローチ** で公式ガイドライン・実証済み手法を優先適用
-- `default` で通常モードに戻ります（ロール特化が解除されます）
-- ロールは現在のセッション内でのみ有効です
+- When switching roles, Claude's **behavior, priorities, analysis methods, and report formats** become specialized
+- Each role applies **Evidence-First approach** prioritizing official guidelines and proven methods
+- Use `default` to return to normal mode (role specialization is removed)
+- Roles are only effective within the current session
 
-### 効果的な活用方法
+### Effective Usage Methods
 
-- **単純な問題**: 単一ロールで十分な専門分析
-- **複雑な問題**: multi-role や role-debate で多角的分析が効果的
-- **迷った時**: smart-review や role-help をご利用ください
-- **継続的改善**: 同じロールでも新たな証拠・手法で分析精度が向上
+- **Simple problems**: Single role provides sufficient specialized analysis
+- **Complex problems**: multi-role or role-debate provides effective multi-perspective analysis
+- **When unsure**: Please use smart-review or role-help
+- **Continuous improvement**: Analysis accuracy improves with new evidence and methods even for the same role
 
-### サブエージェント機能（--agent オプション）
+### Sub-Agent Feature (--agent option)
 
-大規模な分析や独立した専門的処理が必要な場合、`--agent` オプションを使用してロールをサブエージェントとして実行できます。
+For large-scale analysis or independent specialized processing, you can execute roles as sub-agents using the `--agent` option.
 
-#### メリット
-- **独立コンテキスト**: メインの会話を妨げない
-- **並列実行**: 複数の分析を同時実行可能
-- **専門特化**: より深い分析と詳細なレポート
-- **自動委任の促進**: ロールの description に "use PROACTIVELY" や "MUST BE USED" が含まれている場合、より積極的な自動委任が有効化
+#### Benefits
+- **Independent Context**: Does not interfere with main conversation
+- **Parallel Execution**: Multiple analyses can run simultaneously
+- **Specialized Focus**: Deeper analysis and detailed reports
+- **Enhanced Auto-delegation**: When role description contains "use PROACTIVELY" or "MUST BE USED", more proactive auto-delegation is enabled
 
-#### 推奨される使用場面
+#### Recommended Usage Scenarios
 ```bash
-# セキュリティ: OWASP 全項目チェック、CVE 照合
+# Security: Full OWASP checklist, CVE cross-reference
 /role security --agent
-「全コードベースのセキュリティ監査」
+"Security audit of entire codebase"
 
-# アナライザー: 大量ログの根本原因分析
+# Analyzer: Root cause analysis of large logs
 /role analyzer --agent  
-「過去 1 週間のエラーログを分析」
+"Analyze error logs from past week"
 
-# レビュアー: 大規模 PR の詳細レビュー
+# Reviewer: Detailed review of large PR
 /role reviewer --agent
-「PR #500 の 1000 行の変更をレビュー」
+"Review 1000-line changes in PR #500"
 ```
 
-#### 通常ロール vs サブエージェント
-| 状況 | 推奨 | コマンド |
+#### Normal Role vs Sub-Agent
+| Situation | Recommended | Command |
 |------|------|----------|
-| 簡単な確認 | 通常ロール | `/role security` |
-| 大規模分析 | サブエージェント | `/role security --agent` |
-| 対話的作業 | 通常ロール | `/role frontend` |
-| 独立した監査 | サブエージェント | `/role qa --agent` |
+| Simple verification | Normal role | `/role security` |
+| Large-scale analysis | Sub-agent | `/role security --agent` |
+| Interactive work | Normal role | `/role frontend` |
+| Independent audit | Sub-agent | `/role qa --agent` |
 
-### ロール設定の詳細
+### Role Configuration Details
 
-- 各ロールの詳細設定・專門知識・議論特性は `.claude/agents/` ディレクトリ内で定義
-- Evidence-First 手法・認知バイアス対策も含む
-- ロール固有のトリガーフレーズで自動的に特化モードが有効化
-- 実際のロールファイルは 200 行超の専門的内容で構成
+- Detailed settings, specialized knowledge, and discussion characteristics for each role are defined in `.claude/agents/` directory
+- Includes Evidence-First methods and cognitive bias countermeasures
+- Role-specific trigger phrases automatically activate specialized mode
+- Actual role files consist of over 200 lines of specialized content

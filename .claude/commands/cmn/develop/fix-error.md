@@ -1,258 +1,258 @@
 ## Error Fix
 
-エラーメッセージから根本原因を特定し、実証済みの解決策を提案します。
+Identifies root causes from error messages and proposes proven solutions.
 
-### 使い方
+### Usage
 
 ```bash
-/fix-error [オプション]
+/fix-error [options]
 ```
 
-### オプション
+### Options
 
-- なし : 標準的なエラー分析
-- `--deep` : 深層分析モード（依存関係・環境要因を含む）
-- `--preventive` : 予防策重視の分析
-- `--quick` : 即座に適用可能な修正のみ提示
+- none : Standard error analysis
+- `--deep` : Deep analysis mode (including dependencies and environmental factors)
+- `--preventive` : Prevention-focused analysis
+- `--quick` : Present only immediately applicable fixes
 
-### 基本例
+### Basic Examples
 
 ```bash
-# 標準的なエラー分析
+# Standard error analysis
 npm run build 2>&1
 /fix-error
-「ビルドエラーを分析して修正方法を提示して」
+"Analyze build error and provide fix methods"
 
-# 深層分析モード
+# Deep analysis mode
 python app.py 2>&1
 /fix-error --deep
-「エラーの根本原因を環境要因も含めて分析して」
+"Analyze error root causes including environmental factors"
 
-# 即座の修正重視
+# Quick fix focus
 cargo test 2>&1
 /fix-error --quick
-「すぐに適用できる修正方法を提示して」
+"Provide immediately applicable fix methods"
 
-# 予防策重視
+# Prevention-focused
 ./app 2>&1 | tail -50
 /fix-error --preventive
-「エラーの修正と今後の予防策を提示して」
+"Provide error fixes and future prevention strategies"
 ```
 
-### Claude との連携
+### Integration with Claude
 
 ```bash
-# エラーログの分析
+# Error log analysis
 cat error.log
 /fix-error
-「エラーの根本原因を特定し、修正方法を提案して」
+"Identify error root causes and propose fix methods"
 
-# テスト失敗の解決
+# Test failure resolution
 npm test 2>&1
 /fix-error --quick
-「失敗したテストを分析し、即座に適用できる修正案を提示して」
+"Analyze failed tests and provide immediately applicable fixes"
 
-# スタックトレースの解析
+# Stack trace analysis
 python script.py 2>&1
 /fix-error --deep
-「このスタックトレースから問題箇所を特定して環境要因も含めて分析して」
+"Identify problem areas from this stack trace and analyze including environmental factors"
 
-# 複数のエラーをまとめて解決
+# Resolve multiple errors together
 grep -E "ERROR|WARN" app.log | tail -20
 /fix-error
-「これらのエラーと警告を優先度順に分類し、それぞれの解決方法を提案して」
+"Classify these errors and warnings by priority and propose solutions for each"
 ```
 
-### エラー分析の優先度
+### Error Analysis Priority
 
-#### 緊急度: 高（即座の対応必須）
+#### 🔴 High Urgency (Immediate Response Required)
 
-- **アプリケーション停止**: クラッシュ、無限ループ、デッドロック
-- **データ損失リスク**: データベースエラー、ファイル破損
-- **セキュリティ脆弱性**: 認証失敗、権限エラー、インジェクション
-- **本番環境影響**: デプロイ失敗、サービス停止
+- **Application Shutdown**: Crashes, infinite loops, deadlocks
+- **Data Loss Risk**: Database errors, file corruption
+- **Security Vulnerabilities**: Authentication failures, permission errors, injection attacks
+- **Production Environment Impact**: Deployment failures, service outages
 
-#### 🟡 緊急度: 中（早期対応推奨）
+#### 🟡 Medium Urgency (Early Response Recommended)
 
-- **パフォーマンス問題**: メモリリーク、遅延、タイムアウト
-- **部分的機能不全**: 特定機能のエラー、UI の不具合
-- **開発効率低下**: ビルドエラー、テスト失敗
+- **Performance Issues**: Memory leaks, delays, timeouts
+- **Partial Dysfunction**: Specific function errors, UI bugs
+- **Development Efficiency Decline**: Build errors, test failures
 
-#### 🟢 緊急度: 低（計画的対応）
+#### 🟢 Low Urgency (Planned Response)
 
-- **警告メッセージ**: deprecation、lint エラー
-- **開発環境限定**: ローカル環境のみの問題
-- **将来的リスク**: 技術的負債、保守性の問題
+- **Warning Messages**: Deprecation warnings, lint errors
+- **Development Environment Only**: Local environment-specific issues
+- **Future Risks**: Technical debt, maintainability issues
 
-### 分析プロセス
+### Analysis Process
 
-#### Phase 1: エラー情報収集
+#### Phase 1: Error Information Collection
 
 ```bash
-🔴 必須実行:
-- エラーメッセージの完全な取得
-- スタックトレースの確認
-- 発生条件の特定（再現可能性）
+🔴 Must Execute:
+- Complete error message acquisition
+- Stack trace verification
+- Condition identification (reproducibility)
 
-🟡 早期実行:
-- 環境情報の収集（OS、バージョン、依存関係）
-- 直前の変更履歴（git log、最近のコミット）
-- 関連ログの確認
+🟡 Early Execution:
+- Environment information collection (OS, versions, dependencies)
+- Recent change history (git log, recent commits)
+- Related log verification
 
-🟢 追加実行:
-- システムリソース状況
-- ネットワーク状態
-- 外部サービス状態
+🟢 Additional Execution:
+- System resource status
+- Network state
+- External service status
 ```
 
-#### Phase 2: 根本原因分析
+#### Phase 2: Root Cause Analysis
 
-1. **表面的症状の整理**
-   - エラーメッセージの正確な内容
-   - 発生タイミングとパターン
-   - 影響範囲の特定
+1. **Surface Symptom Organization**
+   - Accurate error message content
+   - Occurrence timing and patterns
+   - Impact scope identification
 
-2. **深層原因の特定**
-   - 5 Whys 分析の適用
-   - 依存関係の追跡
-   - 環境差異の確認
+2. **Deep Cause Identification**
+   - Application of 5 Whys analysis
+   - Dependency tracking
+   - Environment difference verification
 
-3. **仮説の検証**
-   - 最小再現コードの作成
-   - 分離テストの実行
-   - 原因の絞り込み
+3. **Hypothesis Verification**
+   - Minimal reproduction code creation
+   - Isolated test execution
+   - Cause narrowing down
 
-#### Phase 3: 解決策の実装
+#### Phase 3: Solution Implementation
 
 ```bash
-🔴 即座の対処（ホットフィックス）:
-- 症状を抑える最小限の修正
-- 一時的な回避策の適用
-- 緊急デプロイの準備
+🔴 Immediate Response (Hotfix):
+- Minimal fixes to suppress symptoms
+- Temporary workaround application
+- Emergency deployment preparation
 
-🟡 根本的解決:
-- 原因に対する本質的な修正
-- テストケースの追加
-- ドキュメントの更新
+🟡 Fundamental Solution:
+- Essential fixes for root causes
+- Test case additions
+- Documentation updates
 
-🟢 予防策の実装:
-- エラーハンドリングの強化
-- 監視・アラートの設定
-- CI/CD パイプラインの改善
+🟢 Prevention Implementation:
+- Error handling enhancement
+- Monitoring and alert setup
+- CI/CD pipeline improvements
 ```
 
-### 出力例
+### Output Example
 
 ```
-🚨 エラー分析レポート
+🚨 Error Analysis Report
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📍 エラー概要
-├─ 種別: [コンパイル/実行時/論理/環境]
-├─ 緊急度: 🔴 高 / 🟡 中 / 🟢 低
-├─ 影響範囲: [機能名/コンポーネント]
-└─ 再現性: [100% / 断続的 / 特定条件]
+📍 Error Overview
+├─ Type: [Compile/Runtime/Logic/Environment]
+├─ Urgency: 🔴 High / 🟡 Medium / 🟢 Low
+├─ Impact Scope: [Function/Component name]
+└─ Reproducibility: [100% / Intermittent / Specific conditions]
 
-🔍 根本原因
-├─ 直接原因: [具体的な原因]
-├─ 背景要因: [環境/設定/依存関係]
-└─ トリガー: [発生条件]
+🔍 Root Cause
+├─ Direct Cause: [Specific cause]
+├─ Background Factors: [Environment/Configuration/Dependencies]
+└─ Trigger: [Occurrence conditions]
 
-💡 解決策
-🔴 即座の対処:
-1. [具体的な修正コマンド/コード]
-2. [一時的な回避策]
+💡 Solutions
+🔴 Immediate Response:
+1. [Specific fix commands/code]
+2. [Temporary workarounds]
 
-🟡 根本的解決:
-1. [本質的な修正方法]
-2. [必要なリファクタリング]
+🟡 Fundamental Solution:
+1. [Essential fix methods]
+2. [Required refactoring]
 
-🟢 予防策:
-1. [エラーハンドリング改善]
-2. [テスト追加]
-3. [監視設定]
+🟢 Prevention:
+1. [Error handling improvements]
+2. [Test additions]
+3. [Monitoring setup]
 
-📝 検証手順
-1. [修正適用後の確認方法]
-2. [テスト実行コマンド]
-3. [動作確認項目]
+📝 Verification Steps
+1. [Post-fix verification methods]
+2. [Test execution commands]
+3. [Operation check items]
 ```
 
-### エラータイプ別の分析手法
+### Analysis Methods by Error Type
 
-#### コンパイル/ビルドエラー
+#### Compile/Build Errors
 
 ```bash
-# TypeScript の型エラー
-必須確認（高）:
-- tsconfig.json の設定
-- 型定義ファイル（.d.ts）の存在
-- import 文の正確性
+# TypeScript type errors
+Must check (High):
+- tsconfig.json configuration
+- Type definition files (.d.ts) existence
+- Import statement accuracy
 
-# Rust のライフタイムエラー
-必須確認（高）:
-- 所有権の移動
-- 参照の有効期間
-- ミュータビリティの競合
+# Rust lifetime errors
+Must check (High):
+- Ownership transfers
+- Reference validity periods
+- Mutability conflicts
 ```
 
-#### 実行時エラー
+#### Runtime Errors
 
 ```bash
-# Null/Undefined 参照
-必須確認（高）:
-- オプショナルチェイニング不足
-- 初期化タイミング
-- 非同期処理の完了待機
+# Null/Undefined references
+Must check (High):
+- Missing optional chaining
+- Initialization timing
+- Async process completion waiting
 
-# メモリ関連エラー
-必須確認（高）:
-- ヒープダンプの取得
-- GC ログの分析
-- 循環参照の検出
+# Memory-related errors
+Must check (High):
+- Heap dump acquisition
+- GC log analysis
+- Circular reference detection
 ```
 
-#### 依存関係エラー
+#### Dependency Errors
 
 ```bash
-# バージョン競合
-必須確認（高）:
-- lock ファイルの整合性
-- peer dependencies の要件
-- 推移的依存関係
+# Version conflicts
+Must check (High):
+- Lock file consistency
+- Peer dependencies requirements
+- Transitive dependencies
 
-# モジュール解決エラー
-必須確認（高）:
-- NODE_PATH 設定
-- パスエイリアス設定
-- シンボリックリンク
+# Module resolution errors
+Must check (High):
+- NODE_PATH configuration
+- Path alias configuration
+- Symbolic links
 ```
 
-### 注意事項
+### Important Notes
 
-- **絶対禁止**: エラーメッセージの一部のみでの判断、検証なしでの Stack Overflow 解決策の適用
-- **例外条件**: 一時的な回避策は以下の 3 つの条件のみ許可
-  1. 本番環境の緊急対応（24 時間以内に根本解決必須）
-  2. 外部サービス障害（復旧待ちの間の代替手段）
-  3. 既知のフレームワークバグ（修正版リリース待ち）
-- **推奨事項**: 根本原因の特定を最優先し、表面的な修正を避ける
+- **Absolutely Prohibited**: Judging by partial error messages only, applying Stack Overflow solutions without verification
+- **Exception Conditions**: Temporary workarounds are allowed only under these 3 conditions:
+  1. Production environment emergency response (root solution required within 24 hours)
+  2. External service failures (alternative measures while waiting for recovery)
+  3. Known framework bugs (waiting for fix release)
+- **Recommendations**: Prioritize root cause identification and avoid superficial fixes
 
-### ベストプラクティス
+### Best Practices
 
-1. **完全な情報収集**: エラーメッセージの最初から最後まで確認
-2. **再現性の確認**: 最小再現コードの作成を最優先
-3. **段階的アプローチ**: 小さな修正から始めて検証
-4. **ドキュメント化**: 解決過程を記録して知識共有
+1. **Complete Information Collection**: Check error messages from start to finish
+2. **Reproducibility Verification**: Prioritize creating minimal reproduction code
+3. **Incremental Approach**: Start with small fixes and verify
+4. **Documentation**: Record solution process for knowledge sharing
 
-#### よくある落とし穴
+#### Common Pitfalls
 
-- **症状への対処**: 根本原因を見逃す表面的な修正
-- **過度な一般化**: 特定ケースの解決策を広範に適用
-- **検証の省略**: 修正後の副作用を確認しない
-- **知識の属人化**: 解決方法を文書化しない
+- **Symptom Treatment**: Superficial fixes that miss root causes
+- **Over-generalization**: Broadly applying specific case solutions
+- **Skipping Verification**: Not checking side effects after fixes
+- **Knowledge Silos**: Not documenting solution methods
 
-### 関連コマンド
+### Related Commands
 
-- `/design-patterns` : コード構造の問題を分析してパターン提案
-- `/tech-debt` : 技術的負債の観点からエラーの根本原因を分析
-- `/analyzer` : より深い根本原因分析が必要な場合
+- `/design-patterns` : Analyze code structure issues and suggest patterns
+- `/tech-debt` : Analyze error root causes from technical debt perspective
+- `/analyzer` : For deeper root cause analysis when needed

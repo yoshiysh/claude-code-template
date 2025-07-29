@@ -1,92 +1,92 @@
-## プロジェクト概要
+## Project Overview
 
-このリポジトリは、Claude Code (claude.ai/code) との統合に特化したシンプルなテンプレートです。軽量な構成で新しいプロジェクトの基盤を提供し、必要に応じて機能を拡張できるように設計されています。
+This repository is a simple template specialized for integration with Claude Code (claude.ai/code). It provides a lightweight foundation for new projects and is designed to be extensible as needed.
 
-### 目的
-- 新しいプロジェクトのセットアップ時間を短縮
-- Claude Code に最適化されたプロジェクトメモリ設定を提供
-- シンプルで拡張可能な基盤を提供
-- ドキュメント管理の体系化
+### Purpose
+- Reduce setup time for new projects
+- Provide project memory settings optimized for Claude Code
+- Provide a simple and extensible foundation
+- Systematize documentation management
 
-### 主な特徴
-- **Claude Code 統合**: プロジェクトメモリの最適化設定
-- **軽量構成**: 必要最小限のファイル構成
-- **ドキュメント管理**: 調査・計画・実装の体系的な記録
-- **AI ルール設定**: コミット、PR、API命名のガイドライン
-- **柔軟性**: どんなプロジェクトタイプにも適応可能
+### Key Features
+- **Claude Code Integration**: Optimized project memory settings
+- **Lightweight Configuration**: Minimal necessary file structure
+- **Documentation Management**: Systematic recording of research, planning, and implementation
+- **AI Rule Settings**: Guidelines for commits, PRs, and API naming
+- **Flexibility**: Adaptable to any project type
 
-### 技術スタック非依存設計
-このテンプレートは意図的に技術スタック非依存で設計されており、必要に応じて技術固有の設定を追加できます。シンプルから始めて段階的に拡張してください。
+### Technology Stack Agnostic Design
+This template is intentionally designed to be technology stack agnostic, allowing you to add technology-specific configurations as needed. Start simple and expand incrementally.
 
-## 開発コマンド
+## Development Commands
 
-プロジェクトの要件に基づいて、以下のコマンド例をカスタマイズしてください：
+Customize the following command examples based on your project requirements:
 
-### 一般的なプロジェクト
+### General Projects
 ```bash
-# プロジェクト固有のコマンドをここに追加
-# 例：
-# npm install          # 依存関係のインストール
-# npm run dev          # 開発サーバーの起動
-# npm run build        # プロダクション用ビルド
-# npm test             # テストの実行
+# Add project-specific commands here
+# Examples:
+# npm install          # Install dependencies
+# npm run dev          # Start development server
+# npm run build        # Production build
+# npm test             # Run tests
 ```
 
-### 技術スタック固有の設定
-プロジェクトで使用する技術に応じて、適切なコマンドを追加してください：
+### Technology Stack Specific Settings
+Add appropriate commands based on the technologies used in your project:
 
-- **Node.js**: package.json のスクリプトセクション
-- **Python**: requirements.txt と virtual environment
-- **Go**: go.mod と Go コマンド
-- **Rust**: Cargo.toml と cargo コマンド
-- **その他**: プロジェクトに適したツールとコマンド
+- **Node.js**: package.json scripts section
+- **Python**: requirements.txt and virtual environment
+- **Go**: go.mod and Go commands
+- **Rust**: Cargo.toml and cargo commands
+- **Others**: Tools and commands suitable for your project
 
-## テンプレート使用ガイド
+## Template Usage Guide
 
-### クイックスタート（3ステップ）
+### Quick Start (3 Steps)
 
-1. **テンプレートを使用**: GitHubの "Use this template" ボタンをクリック
-2. **プロジェクトをカスタマイズ**: CLAUDE.mdのプロジェクト概要を更新
-3. **開発を開始**: 必要な設定ファイルを追加してプロジェクトを開始
+1. **Use the Template**: Click the "Use this template" button on GitHub
+2. **Customize the Project**: Update the project overview in CLAUDE.md
+3. **Start Development**: Add necessary configuration files and begin your project
 
-### シンプルな構成の利点
+### Benefits of Simple Configuration
 
-このテンプレートはシンプルな構成から始まるため：
-- 必要な機能のみを段階的に追加可能
-- プロジェクトの複雑さを最小限に抑制
-- Claude Code との統合に最適化
+This template starts with a simple configuration, which allows you to:
+- Add only necessary features incrementally
+- Keep project complexity to a minimum
+- Optimize integration with Claude Code
 
-## カスタマイズガイドライン
+## Customization Guidelines
 
-1. **技術固有のセットアップ**
-   - プロジェクトに必要な設定ファイルを追加（package.json、requirements.txt、go.mod等）
-   - .gitignoreに追加の除外項目を設定
-   - 依存関係管理ファイルを作成
+1. **Technology-Specific Setup**
+   - Add necessary configuration files for your project (package.json, requirements.txt, go.mod, etc.)
+   - Configure additional exclusion items in .gitignore
+   - Create dependency management files
 
-2. **Claude Code 最適化**
-   - 開発コマンドセクションをプロジェクトに合わせて設定
-   - プロジェクト固有の重要な注意事項をこのファイルに追加
-   - プロジェクトメモリを効果的に活用
+2. **Claude Code Optimization**
+   - Configure the development commands section to match your project
+   - Add important project-specific notes to this file
+   - Effectively utilize project memory
 
-3. **必要に応じた拡張**
-   - GitHubワークフローファイルの追加
-   - セキュリティ設定の追加
-   - コミュニティファイル（CONTRIBUTING.md等）の追加
+3. **Extensions as Needed**
+   - Add GitHub workflow files
+   - Add security configurations
+   - Add community files (CONTRIBUTING.md, etc.)
 
-## 重要な注意事項
+## Important Notes
 
-### ファイル構造
+### File Structure
 
-- `CLAUDE.md` - Claude Code プロジェクトメモリ
-- `docs/` - プロジェクトドキュメント（調査・計画・実装記録）
-- `ai-rules/` - AI関連のルールとガイドライン
+- `CLAUDE.md` - Claude Code project memory
+- `docs/` - Project documentation (research, planning, and implementation records)
+- `ai-rules/` - AI-related rules and guidelines
 
-### メンテナンス
+### Maintenance
 
-- 依存関係を定期的に更新
-- プロジェクトの進化に合わせてドキュメントを更新
-- Claude Code の更新に合わせて設定を見直し
+- Regularly update dependencies
+- Update documentation as the project evolves
+- Review settings in accordance with Claude Code updates
 
 ---
 
-**注意**: このテンプレートは継続的にメンテナンスされ、進化するベストプラクティスに従います。定期的に更新をチェックし、改善をコミュニティにフィードバックしてください。
+**Note**: This template is continuously maintained and follows evolving best practices. Please check for updates regularly and provide feedback on improvements to the community.
